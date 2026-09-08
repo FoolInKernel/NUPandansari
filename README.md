@@ -1,4 +1,4 @@
-# 🌐 Website Resmi PRNU Pandansari
+# Website NU Pandansari
 
 > Platform digital resmi Pengurus Ranting Nahdlatul Ulama (PRNU) Desa Pandansari untuk mempublikasikan berita, dokumentasi galeri kegiatan, serta informasi struktur organisasi kelembagaan dan Badan Otonom (Banom).
 
