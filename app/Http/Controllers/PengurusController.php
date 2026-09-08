@@ -78,4 +78,14 @@ class PengurusController extends Controller
         return redirect()->route('pengurus.index', ['organisasi' => $org])
                          ->with('success', 'Data pengurus berhasil dihapus.');
     }
+
+    public function downloadPdf($id)
+    {
+        $pengurus = \App\Models\Pengurus::findOrFail($id);
+        
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('pengurus.pdf', compact('pengurus'));
+        $pdf->setPaper([0, 0, 240, 350], 'portrait');
+        
+        return $pdf->download('ID_Card_' . str_replace(' ', '_', $pengurus->nama) . '.pdf');
+    }
 }

@@ -62,13 +62,19 @@
                                             <span class="bg-blue-100 text-blue-800 font-bold px-2.5 py-1 rounded-md text-xs uppercase">Anggota</span>
                                         @endif
                                     </td>
-                                    <td class="p-4 text-center flex justify-center gap-2">
-                                        <a href="{{ route('pengurus.edit', $p->id) }}" class="bg-yellow-400 text-emerald-950 font-bold px-3 py-1.5 rounded-lg shadow-sm hover:bg-yellow-500 transition text-xs">
+                                  <td class="p-4 text-center flex justify-center gap-2">
+                                        <!-- Tombol Print Baru -->
+                                        <button onclick="bukaModalPrint({{ $p->id }}, '{{ addslashes($p->nama) }}', '{{ addslashes($p->jabatan) }}', '{{ $p->organisasi }}', '{{ $p->tipe }}')" class="bg-blue-100 text-blue-800 font-bold px-3 py-1.5 rounded-lg border border-black shadow-sm hover:bg-blue-200 transition text-xs">
+                                            🖨️ Print
+                                        </button>
+                                        
+                                        <!-- Tombol Edit & Hapus yang sudah ada -->
+                                        <a href="{{ route('pengurus.edit', $p->id) }}" class="bg-yellow-400 text-emerald-950 font-bold px-3 py-1.5 rounded-lg border border-black shadow-sm hover:bg-yellow-500 transition text-xs">
                                             Edit
                                         </a>
                                         <form action="{{ route('pengurus.destroy', $p->id) }}" method="POST" onsubmit="return confirm('Hapus data pengurus ini?');">
                                             @csrf @method('DELETE')
-                                            <button type="submit" class="bg-red-50 text-red-600 font-bold px-3 py-1.5 rounded-lg border border-red-200 hover:bg-red-600 hover:text-white transition text-xs">
+                                            <button type="submit" class="bg-red-50 text-red-600 font-bold px-3 py-1.5 rounded-lg border border-black hover:bg-red-600 hover:text-white transition text-xs">
                                                 Hapus
                                             </button>
                                         </form>
@@ -88,4 +94,54 @@
 
         </div>
     </div>
+    <!-- Modal Print Card -->
+    <div id="modalPrint" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-xl border border-black p-6 w-full max-w-sm relative">
+            <button onclick="tutupModalPrint()" class="absolute top-3 right-4 text-gray-500 hover:text-black font-extrabold text-lg">
+                &times;
+            </button>
+            
+            <h3 class="text-xl font-black text-emerald-900 mb-4 border-b border-black pb-2">Preview ID Card</h3>
+            
+            <!-- Tampilan Card Mini di Pop-up -->
+            <div class="bg-emerald-50 border border-black rounded-lg p-5 text-center mb-6 relative">
+                <div class="text-xs font-bold text-emerald-900 border-b border-black pb-2 mb-3 uppercase tracking-wider">
+                    NU Desa Pandansari
+                </div>
+                <h4 class="font-extrabold text-xl text-black mb-1" id="previewNama">Nama</h4>
+                <p class="text-sm font-bold text-emerald-700 mb-3" id="previewJabatan">Jabatan</p>
+                <span class="bg-yellow-200 text-gray-800 border border-black text-xs font-bold px-3 py-1 rounded" id="previewOrganisasi">
+                    Organisasi
+                </span>
+            </div>
+            
+            <div class="flex justify-center gap-3">
+                <a id="btnDownloadPdf" href="#" class="flex-1 text-center bg-emerald-700 text-white font-bold px-4 py-2.5 rounded-lg border border-black hover:bg-emerald-800 shadow-sm transition">
+                    ⬇️ Download PDF
+                </a>
+                <button onclick="tutupModalPrint()" class="bg-gray-200 text-gray-800 font-bold px-4 py-2.5 rounded-lg border border-black hover:bg-gray-300 transition">
+                    Batal
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function bukaModalPrint(id, nama, jabatan, organisasi, tipe) {
+            // Isi teks di dalam modal
+            document.getElementById('previewNama').innerText = nama;
+            document.getElementById('previewJabatan').innerText = jabatan;
+            document.getElementById('previewOrganisasi').innerText = organisasi + ' - ' + (tipe === 'pimpinan' ? 'Pimpinan' : 'Anggota');
+            
+            // Set link tombol download agar mengarah ke route PDF
+            document.getElementById('btnDownloadPdf').href = `/pengurus/${id}/pdf`;
+            
+            // Tampilkan modal
+            document.getElementById('modalPrint').classList.remove('hidden');
+        }
+
+        function tutupModalPrint() {
+            document.getElementById('modalPrint').classList.add('hidden');
+        }
+    </script>
 </x-app-layout>

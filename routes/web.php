@@ -42,3 +42,5 @@ Route::resource('galeri-admin', GaleriController::class);
 
 Route::get('/struktur', [StrukturPublicController::class, 'index'])->name('struktur.index');
 Route::get('/struktur/{organisasi}/anggota', [StrukturPublicController::class, 'anggota'])->name('struktur.anggota');
+
+Route::get('/pengurus/{id}/pdf', [\App\Http\Controllers\PengurusController::class, 'downloadPdf'])->name('pengurus.pdf');

@@ -4,21 +4,21 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
             
             <!-- Judul Halaman Kustom & Status -->
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-white p-6 rounded-2xl shadow-sm border border-emerald-100">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-white p-6 rounded-2xl shadow-sm border border-black">
                 <div>
                     <h2 class="font-black text-2xl text-emerald-900 tracking-tight uppercase flex items-center gap-2">
                         <span>⚡ Panel Admin Utama</span>
                     </h2>
                     <p class="text-xs font-semibold text-emerald-700 mt-0.5">Pengurus Ranting Nahdlatul Ulama Desa Pandansari</p>
                 </div>
-                <div class="bg-emerald-800 text-yellow-400 text-xs font-bold px-3 py-1.5 rounded-full shadow-inner flex items-center gap-1.5 border border-emerald-700">
+                <div class="bg-emerald-800 text-yellow-400 text-xs font-bold px-3 py-1.5 rounded-full shadow-inner flex items-center gap-1.5 border border-black">
                     <span class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></span>
                     Sistem Aktif & Terhubung
                 </div>
             </div>
 
             <!-- Kotak Selamat Datang (Hero Card) -->
-            <div class="relative bg-gradient-to-r from-emerald-900 via-emerald-800 to-emerald-950 text-white rounded-2xl shadow-xl p-8 overflow-hidden border border-emerald-700">
+            <div class="relative bg-gradient-to-r from-emerald-900 via-emerald-800 to-emerald-950 text-white rounded-2xl shadow-xl p-8 overflow-hidden border border-black">
                 <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-emerald-700/20 rounded-full blur-2xl pointer-events-none"></div>
                 <div class="absolute right-20 top-0 w-32 h-32 bg-yellow-400/10 rounded-full blur-xl pointer-events-none"></div>
                 
@@ -46,10 +46,10 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     
                     <!-- Card Berita -->
-                    <div class="bg-white rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 p-6 flex flex-col justify-between border border-emerald-100 relative group">
+                    <div class="bg-white rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 p-6 flex flex-col justify-between border border-black relative group">
                         <div class="absolute top-0 left-0 w-full h-1.5 bg-emerald-600 rounded-t-xl"></div>
                         <div>
-                            <div class="w-12 h-12 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <div class="w-12 h-12 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold text-xl mb-4 group-hover:scale-110 transition-transform border border-black">
                                 📢
                             </div>
                             <h4 class="font-bold text-gray-900 text-lg mb-1">Kelola Berita</h4>
@@ -58,7 +58,7 @@
                             </p>
                         </div>
                         <div>
-                            <a href="{{ route('berita.index') }}" class="w-full flex items-center justify-center gap-2 bg-emerald-700 text-white font-bold text-sm px-4 py-2.5 rounded-lg hover:bg-emerald-800 shadow-sm transition">
+                            <a href="{{ route('berita.index') }}" class="w-full flex items-center justify-center gap-2 bg-emerald-700 text-white font-bold text-sm px-4 py-2.5 rounded-lg hover:bg-emerald-800 border border-black shadow-sm transition">
                                 <span>Buka Menu</span>
                                 <span class="text-lg leading-none">&rarr;</span>
                             </a>
@@ -66,10 +66,10 @@
                     </div>
 
                     <!-- Card Galeri -->
-                    <div class="bg-white rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 p-6 flex flex-col justify-between border border-emerald-100 relative group">
+                    <div class="bg-white rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 p-6 flex flex-col justify-between border border-black relative group">
                         <div class="absolute top-0 left-0 w-full h-1.5 bg-yellow-500 rounded-t-xl"></div>
                         <div>
-                            <div class="w-12 h-12 rounded-lg bg-yellow-50 text-yellow-700 flex items-center justify-center font-bold text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <div class="w-12 h-12 rounded-lg bg-yellow-50 text-yellow-700 flex items-center justify-center font-bold text-xl mb-4 group-hover:scale-110 transition-transform border border-black">
                                 📸
                             </div>
                             <h4 class="font-bold text-gray-900 text-lg mb-1">Kelola Galeri</h4>
@@ -78,7 +78,7 @@
                             </p>
                         </div>
                         <div>
-                            <a href="{{ route('galeri-admin.index') }}" class="w-full flex items-center justify-center gap-2 bg-yellow-400 text-emerald-950 font-extrabold text-sm px-4 py-2.5 rounded-lg hover:bg-yellow-500 shadow-sm transition">
+                            <a href="{{ route('galeri-admin.index') }}" class="w-full flex items-center justify-center gap-2 bg-yellow-400 text-emerald-950 font-extrabold text-sm px-4 py-2.5 rounded-lg hover:bg-yellow-500 border border-black shadow-sm transition">
                                 <span>Kelola Galeri</span>
                                 <span class="text-lg leading-none">&rarr;</span>
                             </a>
@@ -86,10 +86,10 @@
                     </div>
 
                     <!-- Card Struktur Organisasi -->
-                    <div class="bg-white rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 p-6 flex flex-col justify-between border border-emerald-100 relative group">
+                    <div class="bg-white rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 p-6 flex flex-col justify-between border border-black relative group">
                         <div class="absolute top-0 left-0 w-full h-1.5 bg-emerald-700 rounded-t-xl"></div>
                         <div>
-                            <div class="w-12 h-12 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <div class="w-12 h-12 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold text-xl mb-4 group-hover:scale-110 transition-transform border border-black">
                                 🏛️
                             </div>
                             <h4 class="font-bold text-gray-900 text-lg mb-1">Struktur Organisasi</h4>
@@ -98,7 +98,7 @@
                             </p>
                         </div>
                         <div>
-                            <a href="{{ route('pengurus.index') }}" class="w-full flex items-center justify-center gap-2 bg-emerald-700 text-white font-bold text-sm px-4 py-2.5 rounded-lg hover:bg-emerald-800 shadow-sm transition">
+                            <a href="{{ route('pengurus.index') }}" class="w-full flex items-center justify-center gap-2 bg-emerald-700 text-white font-bold text-sm px-4 py-2.5 rounded-lg hover:bg-emerald-800 border border-black shadow-sm transition">
                                 <span>Kelola Pengurus</span>
                                 <span class="text-lg leading-none">&rarr;</span>
                             </a>
@@ -106,10 +106,10 @@
                     </div>
 
                     <!-- Card Warga (Segera Hadir) -->
-                    <div class="bg-white/80 rounded-xl shadow-sm p-6 flex flex-col justify-between border border-dashed border-gray-300 relative">
+                    <div class="bg-white/80 rounded-xl shadow-sm p-6 flex flex-col justify-between border border-dashed border-black relative">
                         <div class="absolute top-0 left-0 w-full h-1.5 bg-gray-300 rounded-t-xl"></div>
                         <div>
-                            <div class="w-12 h-12 rounded-lg bg-gray-100 text-gray-400 flex items-center justify-center font-bold text-xl mb-4">
+                            <div class="w-12 h-12 rounded-lg bg-gray-100 text-gray-400 flex items-center justify-center font-bold text-xl mb-4 border border-black">
                                 👥
                             </div>
                             <h4 class="font-bold text-gray-500 text-lg mb-1">Data Warga NU</h4>
@@ -118,7 +118,7 @@
                             </p>
                         </div>
                         <div>
-                            <span class="w-full inline-flex items-center justify-center bg-gray-100 text-gray-500 font-bold text-xs px-4 py-2.5 rounded-lg cursor-not-allowed">
+                            <span class="w-full inline-flex items-center justify-center bg-gray-100 text-gray-500 font-bold text-xs px-4 py-2.5 rounded-lg border border-black cursor-not-allowed">
                                 Segera Hadir...
                             </span>
                         </div>
