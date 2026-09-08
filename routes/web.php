@@ -4,6 +4,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PengurusController;
+use App\Http\Controllers\GaleriController;
+use App\Http\Controllers\StrukturPublicController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,3 +33,12 @@ Route::middleware(['auth'])->group(function () {
 Route::resource('berita', BeritaController::class)->parameters([
     'berita' => 'berita'
 ]);
+
+Route::resource('pengurus', PengurusController::class)->parameters([
+    'pengurus' => 'pengurus'
+]);
+
+Route::resource('galeri-admin', GaleriController::class);
+
+Route::get('/struktur', [StrukturPublicController::class, 'index'])->name('struktur.index');
+Route::get('/struktur/{organisasi}/anggota', [StrukturPublicController::class, 'anggota'])->name('struktur.anggota');
