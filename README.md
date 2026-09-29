@@ -4,7 +4,7 @@
 
 ---
 
-## 🚀 Fitur Utama
+## Fitur Utama
 * **Manajemen Berita & Pengumuman**: Publikasi artikel dan kegiatan ranting secara dinamis.
 * **Galeri Dokumentasi**: Arsip foto kegiatan lengkap dengan deskripsi interaktif.
 * **Struktur Organisasi Terpusat**: Direktori pimpinan dan daftar anggota kelembagaan/Banom (NU, Muslimat, Fatayat, Ansor, Banser, IPNU, IPPNU).
@@ -13,7 +13,7 @@
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 * **Backend**: Laravel 13 (PHP 8.5)
 * **Frontend / Styling**: Tailwind CSS (Brutalist-inspired clean design)
 * **Database**: MariaDB / SQLite
