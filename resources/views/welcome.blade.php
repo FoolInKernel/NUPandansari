@@ -27,10 +27,10 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-1 font-semibold text-sm">
-                    <a href="{{ url('/') }}" class="px-5 py-2 rounded-full bg-emerald-900 shadow-sm text-yellow-400 transition">Beranda</a>
-                    <a href="{{ url('/#berita') }}" class="px-5 py-2 rounded-full hover:text-yellow-300 transition">Berita</a>
-                    <a href="{{ url('/#galeri') }}" class="px-5 py-2 rounded-full hover:text-yellow-300 transition">Galeri</a>
-                    <a href="{{ route('struktur.index') }}" class="px-5 py-2 rounded-full hover:text-yellow-300 transition">Struktur Organisasi</a>
+                    <a href="{{ url('/') }}" class="desktop-nav-link px-5 py-2 rounded-full bg-emerald-900 shadow-sm text-yellow-400 transition">Beranda</a>
+                    <a href="{{ url('/#berita') }}" class="desktop-nav-link px-5 py-2 rounded-full hover:text-yellow-300 transition">Berita</a>
+                    <a href="{{ url('/#galeri') }}" class="desktop-nav-link px-5 py-2 rounded-full hover:text-yellow-300 transition">Galeri</a>
+                    <a href="{{ route('struktur.index') }}" class="desktop-nav-link px-5 py-2 rounded-full hover:text-yellow-300 transition">Struktur Organisasi</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -46,10 +46,10 @@
 
             <!-- Mobile Menu Dropdown -->
             <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 mt-3 bg-emerald-900 rounded-2xl shadow-lg p-3 flex flex-col gap-1">
-                <a href="{{ url('/') }}" class="mobile-link px-4 py-3 bg-emerald-800 text-yellow-400 rounded-xl font-bold">Beranda</a>
-                <a href="{{ url('/#berita') }}" class="mobile-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-800 rounded-xl transition">Berita</a>
-                <a href="{{ url('/#galeri') }}" class="mobile-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-800 rounded-xl transition">Galeri</a>
-                <a href="{{ route('struktur.index') }}" class="mobile-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-800 rounded-xl transition">Struktur Organisasi</a>
+                <a href="{{ url('/') }}" class="mobile-link mobile-nav-link px-4 py-3 bg-emerald-800 text-yellow-400 rounded-xl font-bold transition">Beranda</a>
+                <a href="{{ url('/#berita') }}" class="mobile-link mobile-nav-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-800 rounded-xl transition">Berita</a>
+                <a href="{{ url('/#galeri') }}" class="mobile-link mobile-nav-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-800 rounded-xl transition">Galeri</a>
+                <a href="{{ route('struktur.index') }}" class="mobile-link mobile-nav-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-800 rounded-xl transition">Struktur Organisasi</a>
             </div>
         </nav>
     </div>
@@ -161,6 +161,74 @@
                 wrapper.className = 'fixed top-0 left-0 w-full z-50 transition-all duration-300 pt-4 px-4 sm:px-6 lg:px-8';
                 nav.className = 'bg-emerald-800 text-emerald-100 max-w-7xl mx-auto rounded-full shadow-lg px-6 lg:px-8 transition-all duration-300 relative';
             }
+        });
+
+        // Scrollspy untuk navbar
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('div#berita, div#galeri');
+            const desktopLinks = document.querySelectorAll('.desktop-nav-link');
+            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+            const activeDesktopClasses = ['bg-emerald-900', 'shadow-sm', 'text-yellow-400'];
+            const inactiveDesktopClasses = ['hover:text-yellow-300'];
+            
+            const activeMobileClasses = ['bg-emerald-800', 'text-yellow-400'];
+            const inactiveMobileClasses = ['text-emerald-100', 'hover:bg-emerald-800'];
+
+            function updateNav() {
+                let currentSectionId = 'beranda';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    // Deteksi jika scroll sudah mencapai area section (150px offset dari atas)
+                    if (window.scrollY >= sectionTop - 150) {
+                        currentSectionId = section.getAttribute('id');
+                    }
+                });
+
+                desktopLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (!href.includes('#') && href !== "{{ url('/') }}") return; // Abaikan link external
+
+                    let isMatch = false;
+                    if (currentSectionId === 'beranda' && href === "{{ url('/') }}") {
+                        isMatch = true;
+                    } else if (currentSectionId !== 'beranda' && href.includes('#' + currentSectionId)) {
+                        isMatch = true;
+                    }
+
+                    if (isMatch) {
+                        link.classList.remove(...inactiveDesktopClasses);
+                        link.classList.add(...activeDesktopClasses);
+                    } else {
+                        link.classList.remove(...activeDesktopClasses);
+                        link.classList.add(...inactiveDesktopClasses);
+                    }
+                });
+
+                mobileLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (!href.includes('#') && href !== "{{ url('/') }}") return; // Abaikan link external
+
+                    let isMatch = false;
+                    if (currentSectionId === 'beranda' && href === "{{ url('/') }}") {
+                        isMatch = true;
+                    } else if (currentSectionId !== 'beranda' && href.includes('#' + currentSectionId)) {
+                        isMatch = true;
+                    }
+
+                    if (isMatch) {
+                        link.classList.remove(...inactiveMobileClasses);
+                        link.classList.add(...activeMobileClasses);
+                    } else {
+                        link.classList.remove(...activeMobileClasses);
+                        link.classList.add(...inactiveMobileClasses);
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateNav);
+            updateNav(); // Panggil sekali saat load
         });
     </script>
 </body>

@@ -16,7 +16,7 @@ class GaleriController extends Controller
 
     public function create()
     {
-        return view('galeri-admin.create');
+        return view('galeri-admin.create'); 
     }
 
     public function store(Request $request)

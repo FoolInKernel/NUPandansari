@@ -29,7 +29,7 @@
                         
                         <label class="block text-sm font-bold text-emerald-900 mb-1">Ganti Foto Baru (Opsional)</label>
                         <p class="text-xs text-gray-500 mb-2">Biarkan kosong jika tidak ingin mengubah foto.</p>
-                        <input type="file" name="foto" accept="image/png, image/jpeg, image/jpg" class="w-full border border-gray-300 rounded-md p-2 bg-white cursor-pointer text-sm">
+                        <input type="file" id="foto-upload" name="foto" accept="image/png, image/jpeg, image/jpg" class="w-full border border-gray-300 rounded-md p-2 bg-white cursor-pointer text-sm">
                     </div>
                     
                     <div class="flex gap-4 pt-4 border-t border-gray-200 mt-4">
@@ -41,4 +41,20 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.getElementById('foto-upload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file && file.size > 2 * 1024 * 1024) { // 2MB in bytes
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ukuran Terlalu Besar!',
+                    text: 'Maksimal ukuran gambar adalah 2MB.',
+                    confirmButtonColor: '#047857'
+                });
+                e.target.value = ''; // Reset the input
+            }
+        });
+    </script>
 </x-app-layout>
