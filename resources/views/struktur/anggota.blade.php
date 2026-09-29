@@ -75,7 +75,7 @@
                             </div>
                         </li>
                     @endforeach
-                </ul>
+                {{-- </ul> --}}
             @else
                 <div class="p-12 text-center text-gray-500 font-medium">
                     Belum ada data anggota untuk {{ $organisasi }}.

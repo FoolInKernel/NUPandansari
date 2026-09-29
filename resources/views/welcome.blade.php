@@ -112,7 +112,7 @@
             <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-6 text-center md:text-left">
                 <div>
                     <h2 class="text-xl font-extrabold text-yellow-400 mb-2 flex items-center justify-center md:justify-start gap-2">
-                        <span>🌐 NU Pandansari</span>
+                        <span>NU Pandansari</span>
                     </h2>
                     <p class="text-sm opacity-90 max-w-sm mx-auto md:mx-0">
                         Pusat informasi dan dokumentasi kegiatan warga Nahdlatul Ulama tingkat ranting Desa Pandansari.
