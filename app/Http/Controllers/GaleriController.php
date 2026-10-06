@@ -14,29 +14,52 @@ class GaleriController extends Controller
         return view('galeri-admin.index', compact('galeris'));
     }
 
+    /**
+     * Halaman publik galeri (tanpa auth).
+     */
+    public function publicIndex(Request $request)
+    {
+        $cari = $request->query('cari');
+
+        $query = Galeri::latest();
+
+        if ($cari) {
+            $query->where(function ($q) use ($cari) {
+                $q->where('judul', 'like', "%{$cari}%")
+                  ->orWhere('deskripsi', 'like', "%{$cari}%");
+            });
+        }
+
+        $galeris = $query->paginate(12)->withQueryString();
+        $totalGaleri = Galeri::count();
+
+        return view('galeri.public', compact('galeris', 'totalGaleri', 'cari'));
+    }
+
     public function create()
     {
-        return view('galeri-admin.create'); 
+        return view('galeri-admin.create');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'judul' => 'required|string|max:255',
+            'judul'     => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'foto'      => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $fotoPath = $request->file('foto')->store('galeri', 'public');
 
         Galeri::create([
-            'judul' => $request->judul,
+            'judul'     => $request->judul,
             'deskripsi' => $request->deskripsi,
-            'foto' => $fotoPath,
+            'foto'      => $fotoPath,
         ]);
 
         return redirect()->route('galeri-admin.index')->with('success', 'Foto berhasil diunggah.');
     }
+
     public function edit($id)
     {
         $galeri = Galeri::findOrFail($id);
@@ -48,23 +71,20 @@ class GaleriController extends Controller
         $galeri = Galeri::findOrFail($id);
 
         $request->validate([
-            'judul' => 'required|string|max:255',
+            'judul'     => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Boleh kosong jika tidak ganti foto
+            'foto'      => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $data = [
-            'judul' => $request->judul,
+            'judul'     => $request->judul,
             'deskripsi' => $request->deskripsi,
         ];
 
-        // Jika admin mengunggah foto baru
         if ($request->hasFile('foto')) {
-            // Hapus foto lama
             if (Storage::disk('public')->exists($galeri->foto)) {
                 Storage::disk('public')->delete($galeri->foto);
             }
-            // Simpan foto baru
             $data['foto'] = $request->file('foto')->store('galeri', 'public');
         }
 
@@ -72,6 +92,7 @@ class GaleriController extends Controller
 
         return redirect()->route('galeri-admin.index')->with('success', 'Data galeri berhasil diperbarui.');
     }
+
     public function destroy($id)
     {
         $galeri = Galeri::findOrFail($id);

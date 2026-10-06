@@ -62,7 +62,7 @@
         <div class="nama">
             {{ $pengurus->nama }}
         </div>
-        <div class="jabatan">
+        <div class="jabatan">   
             {{ $pengurus->jabatan }}
         </div>
         <div class="organisasi">

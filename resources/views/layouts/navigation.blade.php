@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-emerald-900 border-b border-emerald-800 text-yellow-400 shadow-md">
+<nav x-data="{ open: false }" class="bg-emerald-900 border-b border-emerald-800 text-emerald-100 shadow-md">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -6,22 +6,27 @@
                 <!-- Logo / Nama Brand -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" class="font-extrabold text-lg tracking-wide text-yellow-400 flex items-center gap-2">
-                        <span>🌐 NU Pandansari</span>
+                        <i class="fa-solid fa-mosque"></i>
+                        <span>NU Pandansari</span>
                     </a>
                 </div>
 
                 <!-- Navigation Links (Menu Utama Admin) -->
-                <div class="hidden space-x-4 sm:flex items-center">
-                    <a href="{{ route('dashboard') }}" class="px-3 py-2 rounded-md text-sm font-bold {{ request()->routeIs('dashboard') ? 'bg-emerald-800 text-yellow-400' : 'text-emerald-100 hover:bg-emerald-800 hover:text-white' }} transition">
+                <div class="hidden space-x-1 sm:flex items-center">
+                    <a href="{{ route('dashboard') }}" class="px-3 py-2 rounded-md text-sm font-bold {{ request()->routeIs('dashboard') ? 'bg-emerald-800 text-yellow-400' : 'text-emerald-100 hover:bg-emerald-800 hover:text-white' }} transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-gauge-high text-xs"></i>
                         Dashboard
                     </a>
-                    <a href="{{ route('berita.index') }}" class="px-3 py-2 rounded-md text-sm font-bold {{ request()->routeIs('berita.*') ? 'bg-emerald-800 text-yellow-400' : 'text-emerald-100 hover:bg-emerald-800 hover:text-white' }} transition">
+                    <a href="{{ route('berita.index') }}" class="px-3 py-2 rounded-md text-sm font-bold {{ request()->routeIs('berita.*') ? 'bg-emerald-800 text-yellow-400' : 'text-emerald-100 hover:bg-emerald-800 hover:text-white' }} transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-newspaper text-xs"></i>
                         Berita
                     </a>
-                    <a href="{{ route('galeri-admin.index') }}" class="px-3 py-2 rounded-md text-sm font-bold {{ request()->routeIs('galeri-admin.*') ? 'bg-emerald-800 text-yellow-400' : 'text-emerald-100 hover:bg-emerald-800 hover:text-white' }} transition">
+                    <a href="{{ route('galeri-admin.index') }}" class="px-3 py-2 rounded-md text-sm font-bold {{ request()->routeIs('galeri-admin.*') ? 'bg-emerald-800 text-yellow-400' : 'text-emerald-100 hover:bg-emerald-800 hover:text-white' }} transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-images text-xs"></i>
                         Galeri
                     </a>
-                    <a href="{{ route('pengurus.index') }}" class="px-3 py-2 rounded-md text-sm font-bold {{ request()->routeIs('pengurus.*') ? 'bg-emerald-800 text-yellow-400' : 'text-emerald-100 hover:bg-emerald-800 hover:text-white' }} transition">
+                    <a href="{{ route('pengurus.index') }}" class="px-3 py-2 rounded-md text-sm font-bold {{ request()->routeIs('pengurus.*') ? 'bg-emerald-800 text-yellow-400' : 'text-emerald-100 hover:bg-emerald-800 hover:text-white' }} transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-users text-xs"></i>
                         Pengurus
                     </a>
                 </div>
@@ -73,10 +78,22 @@
     <!-- Responsive Navigation Menu (Mobile) -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden bg-emerald-950 border-t border-emerald-800">
         <div class="pt-2 pb-3 space-y-1 px-4">
-            <a href="{{ route('dashboard') }}" class="block px-3 py-2 rounded-md text-base font-bold text-emerald-100 hover:bg-emerald-800">Dashboard</a>
-            <a href="{{ route('berita.index') }}" class="block px-3 py-2 rounded-md text-base font-bold text-emerald-100 hover:bg-emerald-800">Kelola Berita</a>
-            <a href="{{ route('galeri-admin.index') }}" class="block px-3 py-2 rounded-md text-base font-bold text-emerald-100 hover:bg-emerald-800">Kelola Galeri</a>
-            <a href="{{ route('pengurus.index') }}" class="block px-3 py-2 rounded-md text-base font-bold text-emerald-100 hover:bg-emerald-800">Kelola Pengurus</a>
+            <a href="{{ route('dashboard') }}" class="block px-3 py-2 rounded-md text-base font-bold text-emerald-100 hover:bg-emerald-800 flex items-center gap-2">
+                <i class="fa-solid fa-gauge-high text-sm"></i>
+                Dashboard
+            </a>
+            <a href="{{ route('berita.index') }}" class="block px-3 py-2 rounded-md text-base font-bold text-emerald-100 hover:bg-emerald-800 flex items-center gap-2">
+                <i class="fa-solid fa-newspaper text-sm"></i>
+                Kelola Berita
+            </a>
+            <a href="{{ route('galeri-admin.index') }}" class="block px-3 py-2 rounded-md text-base font-bold text-emerald-100 hover:bg-emerald-800 flex items-center gap-2">
+                <i class="fa-solid fa-images text-sm"></i>
+                Kelola Galeri
+            </a>
+            <a href="{{ route('pengurus.index') }}" class="block px-3 py-2 rounded-md text-base font-bold text-emerald-100 hover:bg-emerald-800 flex items-center gap-2">
+                <i class="fa-solid fa-users text-sm"></i>
+                Kelola Pengurus
+            </a>
         </div>
 
         <!-- Responsive Settings Options -->

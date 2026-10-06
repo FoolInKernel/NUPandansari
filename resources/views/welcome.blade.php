@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website Resmi NU Desa Pandansari</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -12,7 +13,7 @@
     <div id="navbar-wrapper" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 pt-4 px-4 sm:px-6 lg:px-8">
         <nav id="main-nav" class="bg-emerald-800 text-emerald-100 max-w-7xl mx-auto rounded-full shadow-lg px-6 lg:px-8 transition-all duration-300 relative">
             <div class="flex justify-between items-center h-16">
-                
+
                 <!-- Logo & Judul Kiri -->
                 <div class="flex items-center">
                     <a href="{{ url('/') }}" class="flex items-center gap-3">
@@ -54,28 +55,41 @@
         </nav>
     </div>
 
-    <!-- Banner (Dipindah ke bawah Navbar dengan jarak pt-28 agar tampil rapi di bawah navbar melayang) -->
-    <div class="bg-emerald-700 text-yellow-300 text-center pt-28 pb-16 px-4 md:pt-36 md:pb-20 shadow-inner">
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 text-yellow-400 leading-tight">Nahdlatul Ulama Pandansari</h1>
-        <p class="text-base sm:text-lg md:text-xl max-w-2xl mx-auto opacity-90 text-yellow-100">
+    <!-- Banner -->
+    <div class="bg-emerald-800 text-white text-center pt-28 pb-16 px-4 md:pt-36 md:pb-20">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 leading-tight">Nahdlatul Ulama Pandansari</h1>
+        <p class="text-base sm:text-lg md:text-xl max-w-2xl mx-auto opacity-80">
             Pusat informasi, dakwah, dan kegiatan warga Nahdlatul Ulama tingkat ranting.
         </p>
     </div>
 
     <!-- Berita -->
     <div id="berita" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <h2 class="text-xl sm:text-2xl font-bold mb-6 md:mb-8 text-gray-900">Berita & Informasi Terbaru</h2>
+        <div class="flex items-center justify-between mb-6 md:mb-8">
+            <h2 class="text-xl sm:text-2xl font-bold text-gray-900 flex items-center gap-2">
+                <i class="fa-solid fa-newspaper text-emerald-700"></i>
+                Berita & Informasi Terbaru
+            </h2>
+            @if($totalBerita > 3)
+                <a href="{{ route('berita.public') }}" class="inline-flex items-center gap-1.5 text-sm font-bold text-emerald-700 hover:text-emerald-900 transition">
+                    <span>Lihat Semua</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            @endif
+        </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse ($beritas as $item)
-                <div class="bg-white border border-black rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition transform duration-200 flex flex-col overflow-hidden">
+                <div class="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition transform duration-200 flex flex-col overflow-hidden">
                     <div class="p-5 md:p-6 flex-1">
-                        <span class="text-xs font-bold inline-block py-1 px-2 uppercase rounded text-emerald-900 bg-emerald-100 mb-3 border border-black">
+                        <span class="text-xs font-bold inline-flex items-center gap-1 py-1 px-2.5 rounded-full text-emerald-800 bg-emerald-50 mb-3 border border-emerald-200">
+                            <i class="fa-solid fa-tag text-[10px]"></i>
                             {{ $item->kategori }}
                         </span>
-                        <h3 class="text-lg md:text-xl font-bold mb-2 text-black leading-snug">{{ $item->judul }}</h3>
-                        <p class="text-gray-600 text-sm mb-4 line-clamp-3 font-medium">{{ Str::limit($item->konten, 120) }}</p>
+                        <h3 class="text-lg md:text-xl font-bold mb-2 text-gray-900 leading-snug">{{ $item->judul }}</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">{{ Str::limit($item->konten, 120) }}</p>
                     </div>
-                    <div class="px-5 md:px-6 py-4 bg-gray-50 text-xs text-gray-500 font-medium border-t border-black">
+                    <div class="px-5 md:px-6 py-3 bg-gray-50 text-xs text-gray-500 font-medium border-t border-gray-200 flex items-center gap-1.5">
+                        <i class="fa-regular fa-calendar text-[10px]"></i>
                         Dipublikasikan: {{ $item->created_at->format('d M Y') }}
                     </div>
                 </div>
@@ -86,17 +100,31 @@
     </div>
 
     <!-- Galeri Kegiatan -->
-    <div id="galeri" class="bg-emerald-50 py-12 md:py-16">
+    <div id="galeri" class="bg-gray-100 py-12 md:py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-xl sm:text-2xl font-bold mb-6 md:mb-8 text-gray-900">Galeri Kegiatan</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div class="flex items-center justify-between mb-6 md:mb-8">
+                <h2 class="text-xl sm:text-2xl font-bold text-gray-900 flex items-center gap-2">
+                    <i class="fa-solid fa-images text-emerald-700"></i>
+                    Galeri Kegiatan
+                </h2>
+                @if($totalGaleri > 3)
+                    <a href="{{ route('galeri.public') }}" class="inline-flex items-center gap-1.5 text-sm font-bold text-emerald-700 hover:text-emerald-900 transition">
+                        <span>Lihat Semua</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                @endif
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @forelse ($galeris as $foto)
-                    <div class="bg-white border border-black rounded-lg shadow-sm hover:shadow-md transition flex flex-col overflow-hidden group">
-                        <div class="aspect-video bg-gray-200 overflow-hidden relative border-b border-black">
+                    <div class="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition flex flex-col overflow-hidden group">
+                        <div class="aspect-video bg-gray-200 overflow-hidden relative">
                             <img src="{{ asset('storage/' . $foto->foto) }}" alt="{{ $foto->judul }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                         </div>
                         <div class="p-4 flex-1 flex flex-col">
-                            <h3 class="font-bold text-emerald-900 text-sm mb-2">{{ $foto->judul }}</h3>
+                            <h3 class="font-bold text-gray-900 text-sm mb-1">{{ $foto->judul }}</h3>
+                            @if($foto->deskripsi)
+                                <p class="text-gray-500 text-xs line-clamp-2">{{ Str::limit($foto->deskripsi, 80) }}</p>
+                            @endif
                         </div>
                     </div>
                 @empty
@@ -106,8 +134,8 @@
         </div>
     </div>
 
-    <!-- Footer Minimalis -->
-    <footer class="bg-emerald-900 border-t border-black text-emerald-100">
+    <!-- Footer -->
+    <footer class="bg-emerald-900 text-emerald-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
             <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-6 text-center md:text-left">
                 <div>
@@ -121,7 +149,8 @@
                 <div class="text-sm">
                     <p class="font-bold text-yellow-300 mb-1">Sekretariat Ranting</p>
                     <p>Jl. Nama Jalan Desa No. 12, Pandansari</p>
-                    <a href="#" class="inline-block mt-3 bg-yellow-500 text-emerald-900 font-bold px-4 py-1.5 rounded border border-black shadow hover:bg-yellow-400 transition text-xs">
+                    <a href="#" class="inline-flex items-center gap-1.5 mt-3 bg-yellow-500 text-emerald-900 font-bold px-4 py-1.5 rounded text-xs hover:bg-yellow-400 transition">
+                        <i class="fa-solid fa-phone text-[10px]"></i>
                         Hubungi Pengurus
                     </a>
                 </div>
@@ -130,7 +159,8 @@
                 <p class="text-emerald-300">
                     &copy; 2026 PRNU Pandansari. All rights reserved.
                 </p>
-                <a href="{{ route('login') }}" class="text-emerald-400 hover:text-yellow-300 transition font-medium">
+                <a href="{{ route('login') }}" class="text-emerald-400 hover:text-yellow-300 transition font-medium inline-flex items-center gap-1">
+                    <i class="fa-solid fa-lock text-[10px]"></i>
                     Login Pengurus &rarr;
                 </a>
             </div>
@@ -143,7 +173,7 @@
         const menu = document.getElementById('mobile-menu');
         const iconBars = document.getElementById('menu-icon-bars');
         const iconClose = document.getElementById('menu-icon-close');
-        
+
         btn.addEventListener('click', () => {
             menu.classList.toggle('hidden');
             iconBars.classList.toggle('hidden');
@@ -153,7 +183,7 @@
         window.addEventListener('scroll', () => {
             const wrapper = document.getElementById('navbar-wrapper');
             const nav = document.getElementById('main-nav');
-            
+
             if (window.scrollY > 10) {
                 wrapper.className = 'fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-emerald-800 shadow-md';
                 nav.className = 'text-emerald-100 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 relative';
@@ -171,16 +201,15 @@
 
             const activeDesktopClasses = ['bg-emerald-900', 'shadow-sm', 'text-yellow-400'];
             const inactiveDesktopClasses = ['hover:text-yellow-300'];
-            
+
             const activeMobileClasses = ['bg-emerald-800', 'text-yellow-400'];
             const inactiveMobileClasses = ['text-emerald-100', 'hover:bg-emerald-800'];
 
             function updateNav() {
                 let currentSectionId = 'beranda';
-                
+
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
-                    // Deteksi jika scroll sudah mencapai area section (150px offset dari atas)
                     if (window.scrollY >= sectionTop - 150) {
                         currentSectionId = section.getAttribute('id');
                     }
@@ -188,7 +217,7 @@
 
                 desktopLinks.forEach(link => {
                     const href = link.getAttribute('href');
-                    if (!href.includes('#') && href !== "{{ url('/') }}") return; // Abaikan link external
+                    if (!href.includes('#') && href !== "{{ url('/') }}") return;
 
                     let isMatch = false;
                     if (currentSectionId === 'beranda' && href === "{{ url('/') }}") {
@@ -208,7 +237,7 @@
 
                 mobileLinks.forEach(link => {
                     const href = link.getAttribute('href');
-                    if (!href.includes('#') && href !== "{{ url('/') }}") return; // Abaikan link external
+                    if (!href.includes('#') && href !== "{{ url('/') }}") return;
 
                     let isMatch = false;
                     if (currentSectionId === 'beranda' && href === "{{ url('/') }}") {
@@ -228,7 +257,7 @@
             }
 
             window.addEventListener('scroll', updateNav);
-            updateNav(); // Panggil sekali saat load
+            updateNav();
         });
     </script>
 </body>

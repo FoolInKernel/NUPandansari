@@ -10,9 +10,11 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $beritas = Berita::latest()->take(6)->get();
-        $galeris = Galeri::latest()->take(8)->get(); 
-        
-        return view('welcome', compact('beritas', 'galeris'));
+        $beritas = Berita::latest()->take(3)->get();
+        $galeris = Galeri::latest()->take(3)->get();
+        $totalBerita = Berita::count();
+        $totalGaleri = Galeri::count();
+
+        return view('welcome', compact('beritas', 'galeris', 'totalBerita', 'totalGaleri'));
     }
-}   
+}

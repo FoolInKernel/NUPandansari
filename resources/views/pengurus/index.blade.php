@@ -6,7 +6,7 @@
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-2xl shadow-sm border border-emerald-100">
                 <div>
                     <h2 class="font-black text-2xl text-emerald-900 tracking-tight uppercase">
-                        🏛️ Kelola Struktur Organisasi
+                         Kelola Struktur Organisasi
                     </h2>
                     <p class="text-xs font-semibold text-emerald-700 mt-0.5">Atur pimpinan, wakil, dan anggota tiap Banom</p>
                 </div>

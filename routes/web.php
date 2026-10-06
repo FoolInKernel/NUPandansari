@@ -8,10 +8,26 @@ use App\Http\Controllers\PengurusController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\StrukturPublicController;
 
+// -----------------------------------------------
+// Public Routes (no auth required)
+// -----------------------------------------------
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Berita publik
+Route::get('/berita-publik', [BeritaController::class, 'publicIndex'])->name('berita.public');
+Route::get('/berita-publik/{berita}', [BeritaController::class, 'detail'])->name('berita.detail');
+
+// Galeri publik
+Route::get('/galeri-publik', [GaleriController::class, 'publicIndex'])->name('galeri.public');
+
+// Struktur organisasi publik
+Route::get('/struktur', [StrukturPublicController::class, 'index'])->name('struktur.index');
+Route::get('/struktur/{organisasi}/anggota', [StrukturPublicController::class, 'anggota'])->name('struktur.anggota');
+
+// -----------------------------------------------
+// Auth Routes
+// -----------------------------------------------
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -25,11 +41,10 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::middleware(['auth'])->group(function () {
-    });
-    
-    Route::get('/', [HomeController::class, 'index'])->name('home');
-    
+// -----------------------------------------------
+// Admin Resource Routes
+// -----------------------------------------------
+
 Route::resource('berita', BeritaController::class)->parameters([
     'berita' => 'berita'
 ]);
@@ -40,7 +55,5 @@ Route::resource('pengurus', PengurusController::class)->parameters([
 
 Route::resource('galeri-admin', GaleriController::class);
 
-Route::get('/struktur', [StrukturPublicController::class, 'index'])->name('struktur.index');
-Route::get('/struktur/{organisasi}/anggota', [StrukturPublicController::class, 'anggota'])->name('struktur.anggota');
-
-Route::get('/pengurus/{id}/pdf', [\App\Http\Controllers\PengurusController::class, 'downloadPdf'])->name('pengurus.pdf');
+// PDF download
+Route::get('/pengurus/{id}/pdf', [PengurusController::class, 'downloadPdf'])->name('pengurus.pdf');

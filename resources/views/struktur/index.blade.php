@@ -101,7 +101,7 @@
         const menu = document.getElementById('mobile-menu');
         const iconBars = document.getElementById('menu-icon-bars');
         const iconClose = document.getElementById('menu-icon-close');
-        
+
         btn.addEventListener('click', () => {
             menu.classList.toggle('hidden');
             iconBars.classList.toggle('hidden');
@@ -111,7 +111,7 @@
         window.addEventListener('scroll', () => {
             const wrapper = document.getElementById('navbar-wrapper');
             const nav = document.getElementById('main-nav');
-            
+
             if (window.scrollY > 20) {
                 wrapper.classList.remove('pt-4', 'px-4', 'sm:px-6', 'lg:px-8');
                 wrapper.classList.add('bg-emerald-800', 'shadow-md');
