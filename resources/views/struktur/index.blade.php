@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Struktur Organisasi - NU Pandansari</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
@@ -17,22 +18,22 @@
                         <img src="{{ asset('storage/logoNU.jpg') }}" alt="Logo NU" class="h-9 w-9 object-contain rounded-full bg-white">
                         <div class="h-8 w-px bg-emerald-600"></div>
                         <div class="flex flex-col justify-center">
-                            <span class="font-extrabold text-lg text-yellow-400 leading-none tracking-tight">NU DESA</span>
+                            <span class="font-extrabold text-lg text-white leading-none tracking-tight">NU DESA</span>
                             <span class="text-xs text-emerald-200 font-medium mt-0.5">Pandansari</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="hidden md:flex items-center space-x-1 font-semibold text-sm">
-                    <a href="{{ url('/') }}" class="px-5 py-2 rounded-full hover:text-yellow-300 transition">Beranda</a>
-                    <a href="{{ url('/#berita') }}" class="px-5 py-2 rounded-full hover:text-yellow-300 transition">Berita</a>
-                    <a href="{{ url('/#galeri') }}" class="px-5 py-2 rounded-full hover:text-yellow-300 transition">Galeri</a>
+                    <a href="{{ url('/') }}" class="px-5 py-2 rounded-full hover:bg-emerald-700 text-emerald-100 transition">Beranda</a>
+                    <a href="{{ route('berita.public') }}" class="px-5 py-2 rounded-full hover:bg-emerald-700 text-emerald-100 transition">Berita</a>
+                    <a href="{{ route('galeri.public') }}" class="px-5 py-2 rounded-full hover:bg-emerald-700 text-emerald-100 transition">Galeri</a>
                     <!-- Menu Aktif -->
-                    <a href="{{ route('struktur.index') }}" class="px-5 py-2 rounded-full bg-emerald-900 shadow-sm text-yellow-400 transition">Struktur Organisasi</a>
+                    <a href="{{ route('struktur.index') }}" class="px-5 py-2 rounded-full bg-emerald-900 shadow-sm text-white transition">Struktur Organisasi</a>
                 </div>
 
                 <div class="flex md:hidden items-center">
-                    <button id="mobile-menu-btn" class="text-yellow-400 hover:text-white focus:outline-none p-2 rounded-full bg-emerald-900 shadow-sm">
+                    <button id="mobile-menu-btn" class="text-white hover:text-emerald-200 focus:outline-none p-2 rounded-full bg-emerald-900 shadow-sm">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path id="menu-icon-bars" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                             <path id="menu-icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -43,27 +44,29 @@
 
             <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 mt-3 bg-emerald-900 rounded-2xl shadow-lg p-3 flex flex-col gap-1">
                 <a href="{{ url('/') }}" class="mobile-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-800 rounded-xl transition">Beranda</a>
-                <a href="{{ url('/#berita') }}" class="mobile-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-800 rounded-xl transition">Berita</a>
-                <a href="{{ url('/#galeri') }}" class="mobile-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-800 rounded-xl transition">Galeri</a>
-                <a href="{{ route('struktur.index') }}" class="mobile-link px-4 py-3 bg-emerald-800 text-yellow-400 rounded-xl font-bold">Struktur Organisasi</a>
+                <a href="{{ route('berita.public') }}" class="mobile-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-800 rounded-xl transition">Berita</a>
+                <a href="{{ route('galeri.public') }}" class="mobile-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-800 rounded-xl transition">Galeri</a>
+                <a href="{{ route('struktur.index') }}" class="mobile-link px-4 py-3 bg-emerald-800 text-white rounded-xl font-bold">Struktur Organisasi</a>
             </div>
         </nav>
     </div>
 
     <!-- Konten (Ditambah pt-32 agar tidak tertutup navbar fixed) -->
-    <div class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-12 w-full">
+    <div class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-16 w-full">
         <div class="mb-10 text-center">
             <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 uppercase">Susunan Pengurus & Banom</h1>
             <p class="text-gray-600 font-medium mt-2">Pimpinan dan anggota kelembagaan Nahdlatul Ulama Ranting Desa Pandansari.</p>
         </div>
 
         @foreach ($daftar_organisasi as $org)
-            <div class="mb-12 bg-white border border-black rounded-lg shadow-sm overflow-hidden">
+            <div class="mb-10 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
                 <!-- Header Organisasi -->
-                <div class="bg-emerald-100 px-6 py-4 border-b border-black flex justify-between items-center flex-wrap gap-4">
-                    <h2 class="text-2xl font-bold text-emerald-900 uppercase">{{ $org }}</h2>
-                    <a href="{{ route('struktur.anggota', $org) }}" class="bg-emerald-700 text-white text-sm font-bold px-4 py-2 rounded border border-black hover:bg-emerald-800 transition shadow-sm">
-                        👥 Lihat Daftar Anggota {{ $org }} &rarr;
+                <div class="bg-emerald-50 px-6 py-4 border-b border-gray-200 flex justify-between items-center flex-wrap gap-4">
+                    <h2 class="text-xl md:text-2xl font-bold text-emerald-900 uppercase">{{ $org }}</h2>
+                    <a href="{{ route('struktur.anggota', $org) }}" class="inline-flex items-center gap-2 bg-emerald-700 text-white text-sm font-bold px-4 py-2 rounded-lg hover:bg-emerald-800 transition shadow-sm">
+                        <i class="fa-solid fa-users text-xs"></i>
+                        <span>Lihat Daftar Anggota {{ $org }}</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
                 </div>
 
@@ -72,7 +75,7 @@
                     @if(isset($pimpinans[$org]) && count($pimpinans[$org]) > 0)
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-left">
                             @foreach ($pimpinans[$org] as $pimpinan)
-                                <div class="bg-emerald-50 border border-black rounded p-4 shadow-sm">
+                                <div class="bg-emerald-50/60 border border-emerald-100 rounded-lg p-4 shadow-sm">
                                     <h3 class="text-emerald-700 font-bold mb-1 text-xs uppercase tracking-wide">
                                         {{ $pimpinan->jabatan }}
                                     </h3>
@@ -91,8 +94,8 @@
     </div>
 
     <!-- Footer Simple -->
-    <footer class="bg-emerald-900 border-t border-black text-center py-6 text-emerald-300 text-sm font-bold">
-        &copy; 2026 PRNU Pandansari. All rights reserved.
+    <footer class="bg-emerald-900 border-t border-emerald-800 text-center py-6 text-emerald-300 text-sm font-bold mt-auto">
+        &copy; {{ date('Y') }} PRNU Pandansari. All rights reserved.
     </footer>
 
     <!-- Script Navbar -->

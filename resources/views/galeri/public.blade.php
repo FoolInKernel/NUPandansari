@@ -4,63 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galeri Kegiatan - NU Pandansari</title>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700,800&display=swap" rel="stylesheet" />
-
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
 
     <!-- Navbar Wrapper (Fixed) -->
     <div id="navbar-wrapper" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 pt-4 px-4 sm:px-6 lg:px-8">
-        <nav id="main-nav" class="bg-emerald-950/95 text-emerald-100 max-w-7xl mx-auto rounded-full shadow-lg px-6 lg:px-8 transition-all duration-300 relative backdrop-blur-sm border border-emerald-800/80">
+        <nav id="main-nav" class="bg-emerald-800 text-emerald-100 max-w-7xl mx-auto rounded-full shadow-lg px-6 lg:px-8 transition-all duration-300 relative">
             <div class="flex justify-between items-center h-16">
-
+                
                 <!-- Logo & Judul Kiri -->
                 <div class="flex items-center">
-                    <a href="{{ url('/') }}" class="flex items-center gap-3 group">
-                        <div class="w-10 h-10 rounded-full bg-white p-0.5 ring-2 ring-yellow-400/80 shadow-sm flex items-center justify-center overflow-hidden transition group-hover:scale-105">
-                            <img src="{{ asset('storage/logoNU.jpg') }}" alt="Logo NU" class="w-full h-full object-cover" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fa-solid fa-mosque text-emerald-800 text-lg\'></i>';">
-                        </div>
+                    <a href="{{ url('/') }}" class="flex items-center gap-3">
+                        <img src="{{ asset('storage/logoNU.jpg') }}" alt="Logo NU" class="h-9 w-9 object-contain rounded-full bg-white">
+                        <div class="h-8 w-px bg-emerald-600"></div>
                         <div class="flex flex-col justify-center">
-                            <span class="font-black text-lg text-yellow-400 leading-none tracking-tight group-hover:text-yellow-300 transition">NU DESA</span>
-                            <span class="text-xs text-emerald-200 font-semibold mt-0.5">Pandansari</span>
+                            <span class="font-extrabold text-lg text-white leading-none tracking-tight">NU DESA</span>
+                            <span class="text-xs text-emerald-200 font-medium mt-0.5">Pandansari</span>
                         </div>
                     </a>
                 </div>
 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-1 font-bold text-xs uppercase tracking-wider">
-                    <a href="{{ url('/') }}" class="px-4 py-2 rounded-full hover:text-yellow-300 hover:bg-emerald-900 transition">
-                        Beranda
-                    </a>
-                    <a href="{{ route('berita.public') }}" class="px-4 py-2 rounded-full hover:text-yellow-300 hover:bg-emerald-900 transition">
-                        Berita
-                    </a>
-                    <a href="{{ route('galeri.public') }}" class="px-4 py-2 rounded-full bg-emerald-800 text-yellow-300 shadow-sm transition">
-                        Galeri
-                    </a>
-                    <a href="{{ route('struktur.index') }}" class="px-4 py-2 rounded-full hover:text-yellow-300 hover:bg-emerald-900 transition">
-                        Struktur Organisasi
-                    </a>
-                </div>
-
-                <!-- Right Action Button: Login Pengurus -->
-                <div class="hidden md:flex items-center">
-                    <a href="{{ route('login') }}" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-yellow-300 bg-emerald-900 hover:bg-emerald-800 border border-emerald-700/80 transition">
-                        <i class="fa-solid fa-lock text-[10px]"></i>
-                        <span>Admin</span>
-                    </a>
+                <div class="hidden md:flex items-center space-x-1 font-semibold text-sm">
+                    <a href="{{ url('/') }}" class="px-5 py-2 rounded-full hover:bg-emerald-700 text-emerald-100 transition">Beranda</a>
+                    <a href="{{ route('berita.public') }}" class="px-5 py-2 rounded-full hover:bg-emerald-700 text-emerald-100 transition">Berita</a>
+                    <a href="{{ route('galeri.public') }}" class="px-5 py-2 rounded-full bg-emerald-900 shadow-sm text-white transition">Galeri</a>
+                    <a href="{{ route('struktur.index') }}" class="px-5 py-2 rounded-full hover:bg-emerald-700 text-emerald-100 transition">Struktur Organisasi</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
                 <div class="flex md:hidden items-center">
-                    <button id="mobile-menu-btn" class="text-yellow-400 hover:text-white focus:outline-none p-2 rounded-full bg-emerald-900 shadow-sm">
+                    <button id="mobile-menu-btn" class="text-white hover:text-emerald-200 focus:outline-none p-2 rounded-full bg-emerald-900 shadow-sm">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path id="menu-icon-bars" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                             <path id="menu-icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -70,169 +46,145 @@
             </div>
 
             <!-- Mobile Menu Dropdown -->
-            <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 mt-3 bg-emerald-950/95 border border-emerald-800 rounded-2xl shadow-xl p-3 flex flex-col gap-1 backdrop-blur-md">
-                <a href="{{ url('/') }}" class="mobile-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-900 rounded-xl transition flex items-center gap-2">
-                    <i class="fa-solid fa-house w-5 text-center text-sm"></i>
-                    <span>Beranda</span>
-                </a>
-                <a href="{{ route('berita.public') }}" class="mobile-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-900 rounded-xl transition flex items-center gap-2">
-                    <i class="fa-solid fa-newspaper w-5 text-center text-sm"></i>
-                    <span>Berita</span>
-                </a>
-                <a href="{{ route('galeri.public') }}" class="mobile-link px-4 py-3 bg-emerald-800 text-yellow-400 rounded-xl font-bold transition flex items-center gap-2">
-                    <i class="fa-solid fa-images w-5 text-center text-sm"></i>
-                    <span>Galeri</span>
-                </a>
-                <a href="{{ route('struktur.index') }}" class="mobile-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-900 rounded-xl transition flex items-center gap-2">
-                    <i class="fa-solid fa-sitemap w-5 text-center text-sm"></i>
-                    <span>Struktur Organisasi</span>
-                </a>
-                <a href="{{ route('login') }}" class="mobile-link px-4 py-3 text-yellow-300 font-bold hover:bg-emerald-900 rounded-xl transition flex items-center gap-2 border-t border-emerald-900">
-                    <i class="fa-solid fa-lock w-5 text-center text-sm"></i>
-                    <span>Login Pengurus</span>
-                </a>
+            <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 mt-3 bg-emerald-900 rounded-2xl shadow-lg p-3 flex flex-col gap-1">
+                <a href="{{ url('/') }}" class="mobile-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-800 rounded-xl transition">Beranda</a>
+                <a href="{{ route('berita.public') }}" class="mobile-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-800 rounded-xl transition">Berita</a>
+                <a href="{{ route('galeri.public') }}" class="mobile-link px-4 py-3 bg-emerald-800 text-white rounded-xl font-bold transition">Galeri</a>
+                <a href="{{ route('struktur.index') }}" class="mobile-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-800 rounded-xl transition">Struktur Organisasi</a>
             </div>
         </nav>
     </div>
 
-    <!-- Header Banner Halaman Galeri -->
-    <div class="bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-white pt-32 pb-16 px-4 sm:px-6 lg:px-8 text-center relative overflow-hidden">
-        <div class="max-w-4xl mx-auto relative z-10">
-            <span class="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-amber-300 bg-amber-400/20 border border-amber-400/30 px-3 py-1 rounded-full mb-3">
-                <i class="fa-solid fa-images text-[11px]"></i>
-                <span>Arsip Dokumentasi Visual</span>
-            </span>
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight">
-                Galeri Kegiatan <span class="text-yellow-400">NU Pandansari</span>
-            </h1>
-            <p class="mt-3 text-sm sm:text-base text-emerald-100/90 max-w-xl mx-auto leading-relaxed">
-                Dokumentasi foto kegiatan peringatan hari besar Islam, pengajian, rapat kepengurusan, dan aktivitas banom.
-            </p>
+    <!-- Main Content (Tanpa Banner Besar) -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-16 flex-1 w-full">
+        
+        <!-- Header Judul & Pencarian -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-6 border-b border-gray-200">
+            <div>
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900 flex items-center gap-2">
+                    <i class="fa-solid fa-images text-emerald-700"></i>
+                    <span>Galeri & Dokumentasi Kegiatan</span>
+                </h1>
+                <p class="text-sm text-gray-600 mt-1">
+                    Dokumentasi visual rangkaian kegiatan warga Nahdlatul Ulama Desa Pandansari.
+                </p>
+            </div>
 
-            <!-- Search Bar -->
-            <form action="{{ route('galeri.public') }}" method="GET" class="mt-8 max-w-lg mx-auto flex items-center gap-2 bg-white/10 p-1.5 rounded-full border border-white/20 backdrop-blur-xs">
-                <div class="pl-4 text-emerald-200">
-                    <i class="fa-solid fa-magnifying-glass text-xs"></i>
+            <!-- Form Pencarian -->
+            <form action="{{ route('galeri.public') }}" method="GET" class="flex items-center gap-2 max-w-md w-full">
+                <div class="relative w-full">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                        <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                    </span>
+                    <input type="text" name="cari" value="{{ $cari ?? '' }}"
+                           placeholder="Cari dokumentasi..."
+                           class="pl-9 pr-4 py-2 w-full text-sm bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600">
                 </div>
-                <input type="text" name="cari" value="{{ $cari ?? '' }}"
-                       placeholder="Cari dokumentasi kegiatan..."
-                       class="bg-transparent border-0 text-white placeholder-emerald-200/70 text-xs sm:text-sm focus:ring-0 w-full py-2">
-                <button type="submit" class="bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold px-5 py-2 rounded-full text-xs transition shadow-sm">
+                <button type="submit" class="bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-bold px-4 py-2 rounded-lg transition shadow-sm whitespace-nowrap">
                     Cari
                 </button>
             </form>
         </div>
-    </div>
 
-    <!-- Konten Galeri -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-1 w-full">
-        <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-200">
-            <div>
-                <h2 class="font-black text-xl text-slate-900">Semua Foto Dokumentasi</h2>
-                <p class="text-xs text-slate-500 mt-0.5">Total {{ $totalGaleri }} dokumentasi kegiatan terarsip</p>
+        @if($cari)
+            <div class="mb-6 text-xs text-gray-500">
+                Hasil pencarian: "<strong class="text-gray-900">{{ $cari }}</strong>"
+                <a href="{{ route('galeri.public') }}" class="text-red-600 hover:underline ml-2">
+                    <i class="fa-solid fa-xmark"></i> Hapus Filter
+                </a>
             </div>
-
-            @if($cari)
-                <div class="text-xs text-slate-500">
-                    Mencari "<strong class="text-slate-900">{{ $cari }}</strong>"
-                    <a href="{{ route('galeri.public') }}" class="text-rose-600 hover:underline ml-2">
-                        <i class="fa-solid fa-xmark"></i> Hapus Filter
-                    </a>
-                </div>
-            @endif
-        </div>
+        @endif
 
         <!-- Grid Cards Galeri -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             @forelse ($galeris as $foto)
-                <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col overflow-hidden group">
+                <div class="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 flex flex-col overflow-hidden group">
                     <!-- Foto Wrapper -->
-                    <div class="aspect-[16/10] bg-slate-100 overflow-hidden relative cursor-pointer" onclick="bukaModalFoto('{{ asset('storage/' . $foto->foto) }}', '{{ addslashes($foto->judul) }}', '{{ addslashes($foto->deskripsi) }}')">
+                    <div class="aspect-video bg-gray-100 overflow-hidden relative cursor-pointer" onclick="bukaModalFoto('{{ asset('storage/' . $foto->foto) }}', '{{ addslashes($foto->judul) }}', '{{ addslashes($foto->deskripsi) }}')">
                         <img src="{{ asset('storage/' . $foto->foto) }}" alt="{{ $foto->judul }}"
-                             class="w-full h-full object-cover group-hover:scale-108 transition duration-500">
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
 
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                            <span class="text-xs font-bold text-white bg-slate-900/70 backdrop-blur-xs px-3 py-1.5 rounded-full inline-flex items-center gap-1.5">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                            <span class="text-xs font-bold text-white bg-emerald-800/90 px-3 py-1.5 rounded-full inline-flex items-center gap-1.5 shadow">
                                 <i class="fa-solid fa-magnifying-glass-plus"></i>
-                                <span>Perbesar Foto</span>
+                                <span>Lihat Foto</span>
                             </span>
-                        </div>
-
-                        <div class="absolute top-3 right-3 bg-slate-900/60 backdrop-blur-xs text-white text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
-                            <i class="fa-solid fa-camera"></i>
-                            <span>Foto</span>
                         </div>
                     </div>
 
-                    <!-- Keterangan Foto -->
-                    <div class="p-5 flex-1 flex flex-col justify-between">
+                    <!-- Info Foto -->
+                    <div class="p-4 flex-1 flex flex-col justify-between">
                         <div>
-                            <h3 class="font-extrabold text-sm text-slate-900 group-hover:text-emerald-800 transition line-clamp-1 mb-1.5">
+                            <h3 class="font-bold text-gray-900 text-sm leading-snug group-hover:text-emerald-700 transition">
                                 {{ $foto->judul }}
                             </h3>
-                            <p class="text-slate-600 text-xs line-clamp-3 leading-relaxed">
-                                {{ $foto->deskripsi }}
-                            </p>
+                            @if($foto->deskripsi)
+                                <p class="text-gray-500 text-xs mt-1.5 line-clamp-2 leading-relaxed">
+                                    {{ $foto->deskripsi }}
+                                </p>
+                            @endif
                         </div>
 
-                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-                            <button onclick="bukaModalFoto('{{ asset('storage/' . $foto->foto) }}', '{{ addslashes($foto->judul) }}', '{{ addslashes($foto->deskripsi) }}')"
-                                    class="font-bold text-amber-700 hover:text-amber-900 inline-flex items-center gap-1 transition">
-                                <span>Lihat Penuh</span>
-                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                            </button>
-                            <span class="text-[11px] text-slate-400 font-semibold">
-                                {{ $foto->created_at->format('d M Y') }}
-                            </span>
+                        <div class="mt-3 pt-3 border-t border-gray-100 text-[11px] text-gray-400 font-medium flex items-center gap-1">
+                            <i class="fa-regular fa-calendar text-[10px]"></i>
+                            <span>{{ $foto->created_at->format('d M Y') }}</span>
                         </div>
                     </div>
                 </div>
             @empty
-                <div class="col-span-full border border-dashed border-slate-300 p-16 text-center text-slate-500 bg-white rounded-2xl">
-                    <div class="w-14 h-14 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-3 text-xl">
+                <div class="col-span-full border border-dashed border-gray-300 p-12 text-center text-gray-500 bg-white rounded-xl">
+                    <div class="w-12 h-12 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center mx-auto mb-3 text-lg">
                         <i class="fa-solid fa-images"></i>
                     </div>
-                    <p class="font-bold text-slate-700 text-base">Tidak ada dokumentasi galeri ditemukan.</p>
-                    <p class="text-xs text-slate-400 mt-1">Coba gunakan kata kunci pencarian yang lain.</p>
+                    <p class="font-bold text-gray-700 text-base">Belum ada dokumentasi galeri ditemukan.</p>
+                    <p class="text-xs text-gray-400 mt-1">Coba gunakan kata kunci pencarian yang lain.</p>
                 </div>
             @endforelse
         </div>
 
         <!-- Pagination -->
         @if($galeris->hasPages())
-            <div class="mt-12">
+            <div class="mt-10">
                 {{ $galeris->links() }}
             </div>
         @endif
     </main>
 
-    <!-- Modal Lightbox Galeri -->
-    <div id="modalFoto" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden relative transform transition-all">
-            <button onclick="tutupModalFoto()" class="absolute top-3 right-3 text-slate-500 hover:text-slate-800 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center font-bold text-lg shadow-sm transition">
+    <!-- Modal Pop-up Foto Detail -->
+    <div id="modalFoto" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-xs flex items-center justify-center p-4" onclick="tutupModalFoto(event)">
+        <div class="bg-white rounded-2xl max-w-3xl w-full overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]" onclick="event.stopPropagation()">
+            <!-- Close Button -->
+            <button onclick="tutupModalFoto()" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/60 text-white hover:bg-black flex items-center justify-center transition">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-            <div class="max-h-[70vh] bg-slate-950 flex items-center justify-center overflow-hidden">
-                <img id="modalFotoImg" src="" alt="Foto" class="max-h-[70vh] w-auto object-contain">
+
+            <!-- Modal Image -->
+            <div class="bg-black flex items-center justify-center max-h-[60vh] overflow-hidden">
+                <img id="modalImg" src="" alt="" class="max-h-[60vh] w-auto object-contain">
             </div>
-            <div class="p-6">
-                <h4 id="modalFotoJudul" class="font-black text-lg text-slate-900 mb-2">Judul</h4>
-                <p id="modalFotoDeskripsi" class="text-slate-600 text-xs sm:text-sm leading-relaxed">Deskripsi</p>
+
+            <!-- Modal Details -->
+            <div class="p-6 bg-white overflow-y-auto">
+                <h3 id="modalTitle" class="text-lg font-bold text-gray-900 leading-snug"></h3>
+                <p id="modalDesc" class="text-sm text-gray-600 mt-2 leading-relaxed"></p>
             </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-emerald-950 text-emerald-100 border-t border-emerald-900 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-emerald-300/80 text-center sm:text-left">
-                <p>&copy; {{ date('Y') }} Pengurus Ranting Nahdlatul Ulama Desa Pandansari. All rights reserved.</p>
-                <a href="{{ url('/') }}" class="font-bold text-yellow-400 hover:underline">&larr; Kembali ke Beranda</a>
+    <footer class="bg-emerald-900 text-emerald-100 mt-auto border-t border-emerald-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-emerald-300">
+                <p>&copy; {{ date('Y') }} PRNU Pandansari. All rights reserved.</p>
+                <a href="{{ url('/') }}" class="text-emerald-200 hover:text-white transition font-medium inline-flex items-center gap-1">
+                    <i class="fa-solid fa-arrow-left text-[10px]"></i>
+                    <span>Kembali ke Beranda</span>
+                </a>
             </div>
         </div>
     </footer>
 
-    <!-- Navbar Script & Lightbox -->
+    <!-- Scripts -->
     <script>
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
@@ -250,18 +202,20 @@
             const nav = document.getElementById('main-nav');
 
             if (window.scrollY > 20) {
-                wrapper.className = 'fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-emerald-950/95 shadow-md py-2.5 px-4 sm:px-6 lg:px-8 backdrop-blur-md';
-                nav.className = 'text-emerald-100 max-w-7xl mx-auto flex justify-between items-center transition-all duration-300 relative';
+                wrapper.classList.remove('pt-4', 'px-4', 'sm:px-6', 'lg:px-8');
+                wrapper.classList.add('bg-emerald-800', 'shadow-md');
+                nav.classList.remove('bg-emerald-800', 'rounded-full', 'shadow-lg');
             } else {
-                wrapper.className = 'fixed top-0 left-0 w-full z-50 transition-all duration-300 pt-4 px-4 sm:px-6 lg:px-8';
-                nav.className = 'bg-emerald-950/95 text-emerald-100 max-w-7xl mx-auto rounded-full shadow-lg px-6 lg:px-8 transition-all duration-300 relative backdrop-blur-sm border border-emerald-800/80';
+                wrapper.classList.add('pt-4', 'px-4', 'sm:px-6', 'lg:px-8');
+                wrapper.classList.remove('bg-emerald-800', 'shadow-md');
+                nav.classList.add('bg-emerald-800', 'rounded-full', 'shadow-lg');
             }
         });
 
         function bukaModalFoto(src, judul, deskripsi) {
-            document.getElementById('modalFotoImg').src = src;
-            document.getElementById('modalFotoJudul').innerText = judul;
-            document.getElementById('modalFotoDeskripsi').innerText = deskripsi;
+            document.getElementById('modalImg').src = src;
+            document.getElementById('modalTitle').innerText = judul;
+            document.getElementById('modalDesc').innerText = deskripsi || 'Tidak ada keterangan tambahan.';
             document.getElementById('modalFoto').classList.remove('hidden');
         }
 
@@ -269,10 +223,8 @@
             document.getElementById('modalFoto').classList.add('hidden');
         }
 
-        document.getElementById('modalFoto').addEventListener('click', function(e) {
-            if (e.target === this) {
-                tutupModalFoto();
-            }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') tutupModalFoto();
         });
     </script>
 </body>
