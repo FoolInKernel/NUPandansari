@@ -3,7 +3,7 @@
         <h2 class="font-bold text-xl text-emerald-900 leading-tight">Kelola Galeri Kegiatan</h2>
     </x-slot>
 
-    <div class="py-12 bg-emerald-50 min-h-screen">
+    <div class="py-6 px-4 sm:py-12 sm:px-0 bg-emerald-50 min-h-screen">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             @if (session('success'))

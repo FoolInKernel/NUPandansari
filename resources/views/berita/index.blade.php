@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-6 px-4 sm:py-12 sm:px-0">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             
             @if (session('success'))
@@ -14,11 +14,12 @@
                 </div>
             @endif
 
-            <div class="bg-white border-2 border-black shadow-md sm:rounded-lg p-6">
+            <div class="bg-white border-2 border-black shadow-md sm:rounded-lg p-4 sm:p-6">
                 <a href="{{ route('berita.create') }}" class="inline-block mb-4 bg-emerald-700 text-white font-bold px-4 py-2 rounded border-2 border-black hover:bg-emerald-800">
                     + Tambah Berita
                 </a>
 
+                <div class="overflow-x-auto">
                 <table class="w-full border-collapse border-2 border-black">
                     <thead class="bg-emerald-200 border-b-2 border-black text-black">
                         <tr>
@@ -61,6 +62,7 @@
                         @endforelse
                     </tbody>
                 </table>
+                </div>
                 
                 <div class="mt-4">
                     {{ $beritas->links() }}

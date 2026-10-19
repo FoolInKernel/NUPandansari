@@ -1,7 +1,7 @@
 <x-app-layout>
     <!-- Konten Utama Dashboard Tanpa Header Bawaan Breeze -->
-    <div class="py-10 bg-gray-50 min-h-screen">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+    <div class="py-6 px-4 sm:py-10 sm:px-0 bg-gray-50 min-h-screen">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
             
             <!-- Judul Halaman & Status -->
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-white p-6 rounded-xl shadow-sm border border-gray-200">
@@ -19,7 +19,7 @@
             </div>
 
             <!-- Kotak Selamat Datang (Hero Card) -->
-            <div class="bg-emerald-800 text-white rounded-xl shadow-md p-8 relative overflow-hidden">
+            <div class="bg-emerald-800 text-white rounded-xl shadow-md p-5 sm:p-8 relative overflow-hidden">
                 <div class="relative z-10 max-w-3xl">
                     <span class="bg-emerald-700 text-emerald-100 text-xs font-bold px-3 py-1 rounded-md inline-block mb-3">
                         Selamat Datang, {{ Auth::user()->name ?? 'Admin' }}
