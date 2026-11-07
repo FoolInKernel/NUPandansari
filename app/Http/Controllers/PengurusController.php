@@ -31,7 +31,7 @@ class PengurusController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'organisasi' => 'required|string',
             'tipe'       => 'required|in:pimpinan,anggota',
             'jabatan'    => 'required|string|max:255',
@@ -39,7 +39,7 @@ class PengurusController extends Controller
             'urutan'     => 'required|integer',
         ]);
 
-        Pengurus::create($request->validated());
+        Pengurus::create($validated);
 
         return redirect()->route('pengurus.index', ['organisasi' => $request->organisasi])
                          ->with('success', 'Data pengurus berhasil ditambahkan.');
@@ -54,7 +54,7 @@ class PengurusController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validated = $request->validate([
             'organisasi' => 'required|string',
             'tipe'       => 'required|in:pimpinan,anggota',
             'jabatan'    => 'required|string|max:255',
@@ -63,7 +63,7 @@ class PengurusController extends Controller
         ]);
 
         $pengurus = Pengurus::findOrFail($id);
-        $pengurus->update($request->validated());
+        $pengurus->update($validated);
 
         return redirect()->route('pengurus.index', ['organisasi' => $request->organisasi])
                          ->with('success', 'Data pengurus berhasil diperbarui.');
