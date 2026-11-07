@@ -86,6 +86,12 @@
                 {{ $berita->judul }}
             </h1>
 
+            @if($berita->foto)
+                <div class="mb-8 -mx-6 sm:-mx-10">
+                    <img src="{{ asset('storage/' . $berita->foto) }}" alt="{{ $berita->judul }}" class="w-full h-64 sm:h-96 object-cover">
+                </div>
+            @endif
+
             <!-- Author & Ranting Info -->
             <div class="flex items-center gap-3 pb-6 mb-8 border-b border-gray-300">
                 <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-800 font-extrabold flex items-center justify-center text-xs border border-emerald-200">
