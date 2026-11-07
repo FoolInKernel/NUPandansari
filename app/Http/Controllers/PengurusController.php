@@ -39,7 +39,7 @@ class PengurusController extends Controller
             'urutan'     => 'required|integer',
         ]);
 
-        Pengurus::create($request->all());
+        Pengurus::create($request->validated());
 
         return redirect()->route('pengurus.index', ['organisasi' => $request->organisasi])
                          ->with('success', 'Data pengurus berhasil ditambahkan.');
@@ -63,7 +63,7 @@ class PengurusController extends Controller
         ]);
 
         $pengurus = Pengurus::findOrFail($id);
-        $pengurus->update($request->all());
+        $pengurus->update($request->validated());
 
         return redirect()->route('pengurus.index', ['organisasi' => $request->organisasi])
                          ->with('success', 'Data pengurus berhasil diperbarui.');
