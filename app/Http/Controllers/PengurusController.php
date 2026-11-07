@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class PengurusController extends Controller
 {
-    private $daftar_org = ['NU', 'Muslimat', 'Fatayat', 'GP Ansor', 'Banser', 'IPNU', 'IPPNU'];
+    public const DAFTAR_ORGANISASI = ['NU', 'Muslimat', 'Fatayat', 'GP Ansor', 'Banser', 'IPNU', 'IPPNU'];
 
     public function index(Request $request)
     {
@@ -18,14 +18,14 @@ class PengurusController extends Controller
                               ->orderBy('urutan', 'asc')
                               ->get();
                               
-        $daftar_organisasi = $this->daftar_org;
+        $daftar_organisasi = self::DAFTAR_ORGANISASI;
 
         return view('pengurus.index', compact('penguruses', 'daftar_organisasi', 'selectedOrg'));
     }
 
     public function create()
     {
-        $daftar_organisasi = $this->daftar_org;
+        $daftar_organisasi = self::DAFTAR_ORGANISASI;
         return view('pengurus.create', compact('daftar_organisasi'));
     }
 
@@ -48,7 +48,7 @@ class PengurusController extends Controller
     public function edit($id)
     {
         $pengurus = Pengurus::findOrFail($id);
-        $daftar_organisasi = $this->daftar_org;
+        $daftar_organisasi = self::DAFTAR_ORGANISASI;
         return view('pengurus.edit', compact('pengurus', 'daftar_organisasi'));
     }
 

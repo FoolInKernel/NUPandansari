@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\PengurusController;
 use App\Models\Pengurus;
 use Illuminate\Http\Request;
 
@@ -9,14 +10,12 @@ class StrukturPublicController extends Controller
 {
     public function index()
     {
-        // Mengambil pengurus yang tipenya 'pimpinan' dan mengelompokkannya per organisasi
         $pimpinans = Pengurus::where('tipe', 'pimpinan')
                             ->orderBy('urutan', 'asc')
                             ->get()
                             ->groupBy('organisasi');
         
-        // Daftar organisasi utama
-        $daftar_organisasi = ['NU', 'Muslimat', 'Fatayat', 'GP Ansor', 'Banser', 'IPNU', 'IPPNU'];
+        $daftar_organisasi = PengurusController::DAFTAR_ORGANISASI;
 
         return view('struktur.index', compact('pimpinans', 'daftar_organisasi'));
     }
