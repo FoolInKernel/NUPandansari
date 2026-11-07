@@ -47,6 +47,7 @@ class GaleriController extends Controller
             'judul'     => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
             'foto'      => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
 
         $fotoPath = $request->file('foto')->store('galeri', 'public');
 
