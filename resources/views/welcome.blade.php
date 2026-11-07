@@ -70,16 +70,10 @@
                 <i class="fa-solid fa-newspaper text-emerald-700"></i>
                 Berita & Informasi Terbaru
             </h2>
-            @if($totalBerita > 3)
-                <a href="{{ route('berita.public') }}" class="inline-flex items-center gap-1.5 text-sm font-bold text-emerald-700 hover:text-emerald-900 transition">
-                    <span>Lihat Semua</span>
-                    <i class="fa-solid fa-arrow-right text-xs"></i>
-                </a>
-            @endif
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse ($beritas as $item)
-                <div class="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition transform duration-200 flex flex-col overflow-hidden">
+                <a href="{{ route('berita.detail', $item->slug ?? $item->id) }}" class="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition transform duration-200 flex flex-col overflow-hidden">
                     <div class="p-5 md:p-6 flex-1">
                         <span class="text-xs font-bold inline-flex items-center gap-1 py-1 px-2.5 rounded-full text-emerald-800 bg-emerald-50 mb-3 border border-emerald-200">
                             <i class="fa-solid fa-tag text-[10px]"></i>
@@ -92,45 +86,10 @@
                         <i class="fa-regular fa-calendar text-[10px]"></i>
                         Dipublikasikan: {{ $item->created_at->format('d M Y') }}
                     </div>
-                </div>
+                </a>
             @empty
                 <p class="text-gray-500 italic">Belum ada berita yang dipublikasikan.</p>
             @endforelse
-        </div>
-    </div>
-
-    <!-- Galeri Kegiatan -->
-    <div id="galeri" class="bg-gray-100 py-12 md:py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between mb-6 md:mb-8">
-                <h2 class="text-xl sm:text-2xl font-bold text-gray-900 flex items-center gap-2">
-                    <i class="fa-solid fa-images text-emerald-700"></i>
-                    Galeri Kegiatan
-                </h2>
-                @if($totalGaleri > 3)
-                    <a href="{{ route('galeri.public') }}" class="inline-flex items-center gap-1.5 text-sm font-bold text-emerald-700 hover:text-emerald-900 transition">
-                        <span>Lihat Semua</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </a>
-                @endif
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                @forelse ($galeris as $foto)
-                    <div class="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition flex flex-col overflow-hidden group">
-                        <div class="aspect-video bg-gray-200 overflow-hidden relative">
-                            <img src="{{ asset('storage/' . $foto->foto) }}" alt="{{ $foto->judul }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                        </div>
-                        <div class="p-4 flex-1 flex flex-col">
-                            <h3 class="font-bold text-gray-900 text-sm mb-1">{{ $foto->judul }}</h3>
-                            @if($foto->deskripsi)
-                                <p class="text-gray-500 text-xs line-clamp-2">{{ Str::limit($foto->deskripsi, 80) }}</p>
-                            @endif
-                        </div>
-                    </div>
-                @empty
-                    <p class="text-gray-500 italic">Belum ada foto galeri.</p>
-                @endforelse
-            </div>
         </div>
     </div>
 
@@ -195,7 +154,7 @@
 
         // Scrollspy untuk navbar
         document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('div#berita, div#galeri');
+            const sections = document.querySelectorAll('div#berita');
             const desktopLinks = document.querySelectorAll('.desktop-nav-link');
             const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
