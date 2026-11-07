@@ -14,6 +14,9 @@ use App\Http\Controllers\StrukturPublicController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+// Berita publik
+Route::get('/berita-publik', [BeritaController::class, 'publicIndex'])->name('berita.public');
+
 // Berita publik (detail only)
 Route::get('/berita-publik/{berita}', [BeritaController::class, 'detail'])->name('berita.detail');
 

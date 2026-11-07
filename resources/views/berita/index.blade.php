@@ -39,12 +39,12 @@
                                 
                                 <td class="border-2 border-black p-2 flex gap-2">
                                     <!-- Tombol Edit -->
-                                    <a href="{{ route('berita.edit', $berita->id) }}" class="bg-yellow-400 text-black font-bold px-3 py-1 rounded border-2 border-black text-sm hover:bg-yellow-500">
+                                    <a href="{{ route('berita.edit', $berita->slug) }}" class="bg-yellow-400 text-black font-bold px-3 py-1 rounded border-2 border-black text-sm hover:bg-yellow-500">
                                         Edit
                                     </a>
 
                                     <!-- Tombol Hapus -->
-                                    <form action="{{ route('berita.destroy', $berita->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus berita ini?');">
+                                    <form action="{{ route('berita.destroy', $berita->slug) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus berita ini?');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="bg-red-600 text-white font-bold px-3 py-1 rounded border-2 border-black text-sm hover:bg-red-700">

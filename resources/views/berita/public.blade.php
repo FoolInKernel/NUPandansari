@@ -71,7 +71,7 @@
             </div>
 
             <!-- Form Pencarian -->
-            <form action="{{ route('home') . '#berita' }}" method="GET" class="flex items-center gap-2 max-w-md w-full">
+            <form action="{{ route('berita.public') }}" method="GET" class="flex items-center gap-2 max-w-md w-full">
                 @if($kategoriAktif)
                     <input type="hidden" name="kategori" value="{{ $kategoriAktif }}">
                 @endif
