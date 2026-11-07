@@ -42,18 +42,20 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 // -----------------------------------------------
-// Admin Resource Routes
+// Admin Resource Routes (auth required)
 // -----------------------------------------------
 
-Route::resource('berita', BeritaController::class)->parameters([
-    'berita' => 'berita'
-]);
+Route::middleware('auth')->group(function () {
+    Route::resource('berita', BeritaController::class)->parameters([
+        'berita' => 'berita'
+    ]);
 
-Route::resource('pengurus', PengurusController::class)->parameters([
-    'pengurus' => 'pengurus'
-]);
+    Route::resource('pengurus', PengurusController::class)->parameters([
+        'pengurus' => 'pengurus'
+    ]);
 
-Route::resource('galeri-admin', GaleriController::class);
+    Route::resource('galeri-admin', GaleriController::class);
 
-// PDF download
-Route::get('/pengurus/{id}/pdf', [PengurusController::class, 'downloadPdf'])->name('pengurus.pdf');
+    // PDF download
+    Route::get('/pengurus/{id}/pdf', [PengurusController::class, 'downloadPdf'])->name('pengurus.pdf');
+});
