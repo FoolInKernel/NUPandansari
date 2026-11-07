@@ -29,7 +29,7 @@
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-1 font-semibold text-sm">
                     <a href="{{ url('/') }}" class="px-5 py-2 rounded-full hover:bg-emerald-700 text-emerald-100 transition">Beranda</a>
-                    <a href="{{ route('berita.public') }}" class="px-5 py-2 rounded-full bg-emerald-900 shadow-sm text-white transition">Berita</a>
+                    <a href="{{ route('home') . '#berita' }}" class="px-5 py-2 rounded-full bg-emerald-900 shadow-sm text-white transition">Berita</a>
                     <a href="{{ route('galeri.public') }}" class="px-5 py-2 rounded-full hover:bg-emerald-700 text-emerald-100 transition">Galeri</a>
                     <a href="{{ route('struktur.index') }}" class="px-5 py-2 rounded-full hover:bg-emerald-700 text-emerald-100 transition">Struktur Organisasi</a>
                 </div>
@@ -48,7 +48,7 @@
             <!-- Mobile Menu Dropdown -->
             <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 mt-3 bg-emerald-900 rounded-2xl shadow-lg p-3 flex flex-col gap-1">
                 <a href="{{ url('/') }}" class="mobile-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-800 rounded-xl transition">Beranda</a>
-                <a href="{{ route('berita.public') }}" class="mobile-link px-4 py-3 bg-emerald-800 text-white rounded-xl font-bold transition">Berita</a>
+                <a href="{{ route('home') . '#berita' }}" class="mobile-link px-4 py-3 bg-emerald-800 text-white rounded-xl font-bold transition">Berita</a>
                 <a href="{{ route('galeri.public') }}" class="mobile-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-800 rounded-xl transition">Galeri</a>
                 <a href="{{ route('struktur.index') }}" class="mobile-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-800 rounded-xl transition">Struktur Organisasi</a>
             </div>
@@ -71,7 +71,7 @@
             </div>
 
             <!-- Form Pencarian -->
-            <form action="{{ route('berita.public') }}" method="GET" class="flex items-center gap-2 max-w-md w-full">
+            <form action="{{ route('home') . '#berita' }}" method="GET" class="flex items-center gap-2 max-w-md w-full">
                 @if($kategoriAktif)
                     <input type="hidden" name="kategori" value="{{ $kategoriAktif }}">
                 @endif
@@ -92,7 +92,7 @@
         <!-- Filter Kategori Tabs -->
         <div class="flex flex-wrap items-center justify-between gap-3 mb-8">
             <div class="flex flex-wrap items-center gap-2">
-                <a href="{{ route('berita.public') }}"
+                <a href="{{ route('home') . '#berita' }}"
                    class="px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition {{ !$kategoriAktif ? 'bg-emerald-800 text-white shadow-sm' : 'bg-white text-gray-700 hover:bg-emerald-50 hover:text-emerald-800 border border-gray-200' }}">
                     Semua ({{ $kategoriCounts['Semua'] }})
                 </a>
