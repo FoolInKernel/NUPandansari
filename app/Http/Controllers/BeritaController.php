@@ -50,13 +50,7 @@ class BeritaController extends Controller
      */
     public function detail(Berita $berita)
     {
-        $beritaTerkait = Berita::where('id', '!=', $berita->id)
-            ->where('kategori', $berita->kategori)
-            ->latest()
-            ->take(3)
-            ->get();
-
-        return view('berita.show', compact('berita', 'beritaTerkait'));
+        return view('berita.show', compact('berita'));
     }
 
     public function create()

@@ -67,7 +67,7 @@
             <span class="text-gray-800 truncate max-w-xs sm:max-w-md">{{ $berita->judul }}</span>
         </nav>
 
-        <article class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 sm:p-10 overflow-hidden">
+        <article class="bg-gray-800 text-gray-100 rounded-2xl border border-gray-700 shadow-lg p-6 sm:p-10 overflow-hidden">
             <!-- Category & Date Header -->
             <div class="flex flex-wrap items-center gap-3 mb-4">
                 <span class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-800 border border-emerald-200 font-bold px-3 py-1 rounded-full text-xs uppercase tracking-wider">
@@ -75,75 +75,45 @@
                     <span>{{ $berita->kategori }}</span>
                 </span>
 
-                <span class="text-xs text-gray-500 font-medium inline-flex items-center gap-1.5">
-                    <i class="fa-regular fa-calendar text-emerald-700"></i>
+                <span class="text-xs text-gray-400 font-medium inline-flex items-center gap-1.5">
+                    <i class="fa-regular fa-calendar text-emerald-400"></i>
                     <span>{{ $berita->created_at->translatedFormat('l, d F Y') }}</span>
                 </span>
             </div>
 
             <!-- Title -->
-            <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight leading-snug mb-6">
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-snug mb-6">
                 {{ $berita->judul }}
             </h1>
 
             <!-- Author & Ranting Info -->
-            <div class="flex items-center gap-3 pb-6 mb-8 border-b border-gray-100">
-                <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-900 font-extrabold flex items-center justify-center text-xs border border-emerald-200">
+            <div class="flex items-center gap-3 pb-6 mb-8 border-b border-gray-700">
+                <div class="w-10 h-10 rounded-full bg-emerald-900 text-emerald-200 font-extrabold flex items-center justify-center text-xs border border-emerald-700">
                     NU
                 </div>
                 <div>
-                    <div class="font-bold text-sm text-gray-900">Redaksi Warta NU Pandansari</div>
-                    <div class="text-xs text-gray-500">Pengurus Ranting Nahdlatul Ulama</div>
+                    <div class="font-bold text-sm text-gray-100">Redaksi Warta NU Pandansari</div>
+                    <div class="text-xs text-gray-400">Pengurus Ranting Nahdlatul Ulama</div>
                 </div>
             </div>
 
             <!-- Body Text -->
-            <div class="text-gray-700 text-base sm:text-lg leading-relaxed space-y-4">
+            <div class="text-gray-300 text-base sm:text-lg leading-relaxed space-y-4">
                 {!! nl2br(e($berita->konten)) !!}
             </div>
 
             <!-- Bottom Navigation -->
-            <div class="mt-12 pt-6 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4">
-                <a href="{{ url('/#berita') }}" class="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold px-4 py-2 rounded-lg text-xs sm:text-sm transition">
+            <div class="mt-12 pt-6 border-t border-gray-700 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <a href="{{ url('/#berita') }}" class="inline-flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-gray-100 font-bold px-4 py-2 rounded-lg text-xs sm:text-sm transition">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>Kembali ke Beranda</span>
                 </a>
 
-                <div class="text-xs text-gray-500 font-medium">
+                <div class="text-xs text-gray-400 font-medium">
                     Dipublikasikan pada {{ $berita->created_at->format('d M Y, H:i') }} WIB
                 </div>
             </div>
         </article>
-
-        <!-- Berita Terkait Lainnya -->
-        @if(isset($beritaTerkait) && $beritaTerkait->count() > 0)
-            <div class="mt-10">
-                <h3 class="font-bold text-lg text-gray-900 mb-4 flex items-center gap-2">
-                    <i class="fa-solid fa-newspaper text-emerald-800"></i>
-                    <span>Berita Terkait Lainnya</span>
-                </h3>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                    @foreach($beritaTerkait as $lain)
-                        <a href="{{ route('berita.detail', $lain->slug ?? $lain->id) }}" 
-                           class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-emerald-300 transition group flex flex-col justify-between">
-                            <div>
-                                <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 mb-2 inline-block">
-                                    {{ $lain->kategori }}
-                                </span>
-                                <h4 class="font-bold text-sm text-gray-900 group-hover:text-emerald-700 transition line-clamp-2">
-                                    {{ $lain->judul }}
-                                </h4>
-                            </div>
-                            <div class="mt-3 text-[11px] text-gray-400 font-medium flex items-center gap-1">
-                                <i class="fa-regular fa-calendar text-[10px]"></i>
-                                <span>{{ $lain->created_at->format('d M Y') }}</span>
-                            </div>
-                        </a>
-                    @endforeach
-                </div>
-            </div>
-        @endif
     </main>
 
     <!-- Footer -->
