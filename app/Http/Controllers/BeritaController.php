@@ -37,13 +37,10 @@ class BeritaController extends Controller
 
         $beritas = $query->paginate(9)->withQueryString();
 
-        $kategoriCounts = [
-            'Semua' => Berita::count(),
-            'Kajian' => Berita::where('kategori', 'Kajian')->count(),
-            'Pengumuman' => Berita::where('kategori', 'Pengumuman')->count(),
-            'Opini' => Berita::where('kategori', 'Opini')->count(),
-            'Lainnya' => Berita::where('kategori', 'Lainnya')->count(),
-        ];
+        $kategoriCounts = Berita::selectRaw("kategori, count(*) as total")
+            ->groupBy('kategori')
+            ->pluck('total', 'kategori');
+        $kategoriCounts->prepend(Berita::count(), 'Semua');
 
         return view('berita.public', compact('beritas', 'kategoriAktif', 'kategoriCounts', 'cari'));
     }
