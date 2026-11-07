@@ -103,7 +103,9 @@ class BeritaController extends Controller
             'konten'   => 'required|string',
         ]);
 
-        $berita->update($validated);
+        $berita->update(array_merge($validated, [
+            'slug' => Str::slug($validated['judul']) . '-' . uniqid(),
+        ]));
 
         return redirect()->route('berita.index')->with('success', 'Berita berhasil diperbarui.');
     }
