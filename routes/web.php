@@ -45,7 +45,7 @@ require __DIR__.'/auth.php';
 // Admin Resource Routes (auth required)
 // -----------------------------------------------
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'role:Super Admin|Admin'])->group(function () {
     Route::resource('berita', BeritaController::class)->parameters([
         'berita' => 'berita'
     ]);
