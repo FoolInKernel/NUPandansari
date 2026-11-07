@@ -30,7 +30,7 @@
                 <div class="hidden md:flex items-center space-x-1 font-semibold text-sm">
                     <a href="{{ url('/') }}" class="px-5 py-2 rounded-full hover:bg-emerald-700 text-emerald-100 transition">Beranda</a>
                     <a href="{{ url('/#berita') }}" class="px-5 py-2 rounded-full bg-emerald-900 shadow-sm text-white transition">Berita</a>
-                    <a href="{{ url('/#galeri') }}" class="px-5 py-2 rounded-full hover:bg-emerald-700 text-emerald-100 transition">Galeri</a>
+                    <a href="{{ route('galeri.public') }}" class="px-5 py-2 rounded-full hover:bg-emerald-700 text-emerald-100 transition">Galeri</a>
                     <a href="{{ route('struktur.index') }}" class="px-5 py-2 rounded-full hover:bg-emerald-700 text-emerald-100 transition">Struktur Organisasi</a>
                 </div>
 
@@ -49,7 +49,7 @@
             <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 mt-3 bg-emerald-900 rounded-2xl shadow-lg p-3 flex flex-col gap-1">
                 <a href="{{ url('/') }}" class="mobile-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-800 rounded-xl transition">Beranda</a>
                 <a href="{{ url('/#berita') }}" class="mobile-link px-4 py-3 bg-emerald-800 text-white rounded-xl font-bold transition">Berita</a>
-                <a href="{{ url('/#galeri') }}" class="mobile-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-800 rounded-xl transition">Galeri</a>
+                <a href="{{ route('galeri.public') }}" class="mobile-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-800 rounded-xl transition">Galeri</a>
                 <a href="{{ route('struktur.index') }}" class="mobile-link px-4 py-3 text-emerald-100 font-bold hover:bg-emerald-800 rounded-xl transition">Struktur Organisasi</a>
             </div>
         </nav>
