@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Berita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class BeritaController extends Controller
 {
@@ -64,9 +65,14 @@ class BeritaController extends Controller
             'judul'    => 'required|string|max:255',
             'kategori' => 'required|in:Kajian,Pengumuman,Opini,Lainnya',
             'konten'   => 'required|string',
+            'foto'     => 'nullable|image|max:2048',
         ]);
 
         $validated['slug'] = Str::slug($validated['judul']) . '-' . uniqid();
+        
+        if ($request->hasFile('foto')) {
+            $validated['foto'] = $request->file('foto')->store('berita', 'public');
+        }
 
         Berita::create($validated);
 
@@ -95,17 +101,33 @@ class BeritaController extends Controller
             'judul'    => 'required|string|max:255',
             'kategori' => 'required|in:Kajian,Pengumuman,Opini,Lainnya',
             'konten'   => 'required|string',
+            'foto'     => 'nullable|image|max:2048',
         ]);
 
-        $berita->update(array_merge($validated, [
-            'slug' => Str::slug($validated['judul']) . '-' . uniqid(),
-        ]));
+        $data = [
+            'judul'    => $validated['judul'],
+            'kategori' => $validated['kategori'],
+            'konten'   => $validated['konten'],
+            'slug'     => Str::slug($validated['judul']) . '-' . uniqid(),
+        ];
+
+        if ($request->hasFile('foto')) {
+            if ($berita->foto) {
+                Storage::disk('public')->delete($berita->foto);
+            }
+            $data['foto'] = $request->file('foto')->store('berita', 'public');
+        }
+
+        $berita->update($data);
 
         return redirect()->route('berita.index')->with('success', 'Berita berhasil diperbarui.');
     }
 
     public function destroy(Berita $berita)
     {
+        if ($berita->foto) {
+            Storage::disk('public')->delete($berita->foto);
+        }
         $berita->delete();
 
         return redirect()->route('berita.index')->with('success', 'Berita berhasil dihapus.');

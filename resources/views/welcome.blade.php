@@ -74,6 +74,9 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse ($beritas as $item)
                 <a href="{{ route('berita.detail', $item->slug ?? $item->id) }}" class="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition transform duration-200 flex flex-col overflow-hidden">
+                    @if($item->foto)
+                        <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->judul }}" class="w-full h-48 object-cover">
+                    @endif
                     <div class="p-5 md:p-6 flex-1">
                         <span class="text-xs font-bold inline-flex items-center gap-1 py-1 px-2.5 rounded-full text-emerald-800 bg-emerald-50 mb-3 border border-emerald-200">
                             <i class="fa-solid fa-tag text-[10px]"></i>

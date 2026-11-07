@@ -9,12 +9,17 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                 
-                <form action="{{ route('berita.store') }}" method="POST" class="space-y-4">
+                <form action="{{ route('berita.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
                     @csrf
                     
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Judul Berita</label>
                         <input type="text" name="judul" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Foto Banner (Maks 2MB)</label>
+                        <input type="file" name="foto" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" accept="image/*">
                     </div>
 
                     <div>

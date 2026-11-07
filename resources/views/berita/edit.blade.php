@@ -9,13 +9,23 @@
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white border-2 border-black shadow-md sm:rounded-lg p-4 sm:p-6">
                 
-                <form action="{{ route('berita.update', $berita->id) }}" method="POST" class="space-y-4">
+                <form action="{{ route('berita.update', $berita->id) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
                     @csrf
                     @method('PUT')
                     
                     <div>
                         <label class="block text-sm font-bold text-black mb-1">Judul Berita</label>
                         <input type="text" name="judul" value="{{ old('judul', $berita->judul) }}" class="w-full border-2 border-black rounded-md p-2" required>
+                    </div>
+
+                    <div>
+                        @if($berita->foto)
+                            <div class="mb-2">
+                                <img src="{{ asset('storage/' . $berita->foto) }}" alt="Foto" class="w-32 h-32 object-cover rounded-md">
+                            </div>
+                        @endif
+                        <label class="block text-sm font-bold text-black mb-1">Foto Banner (Maks 2MB)</label>
+                        <input type="file" name="foto" class="w-full border-2 border-black rounded-md p-2" accept="image/*">
                     </div>
 
                     <div>

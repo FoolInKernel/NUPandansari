@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Berita extends Model
 {
-    protected $fillable = ['judul', 'slug', 'kategori', 'konten'];
+    protected $fillable = ['judul', 'slug', 'kategori', 'konten', 'foto'];
 
     public function getRouteKeyName(): string
     {
