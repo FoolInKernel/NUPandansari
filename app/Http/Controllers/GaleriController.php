@@ -45,9 +45,8 @@ class GaleriController extends Controller
     {
         $request->validate([
             'judul'     => 'required|string|max:255',
-            'deskripsi' => 'required|string',
+            'deskripsi' => 'nullable|string',
             'foto'      => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
 
         $fotoPath = $request->file('foto')->store('galeri', 'public');
 
@@ -72,7 +71,7 @@ class GaleriController extends Controller
 
         $request->validate([
             'judul'     => 'required|string|max:255',
-            'deskripsi' => 'required|string',
+            'deskripsi' => 'nullable|string',
             'foto'      => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
