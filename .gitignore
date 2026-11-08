@@ -22,6 +22,7 @@
 /storage/pail
 /vendor
 _ide_helper.php
+SESSION_CONTEXT.md
 Homestead.json
 Homestead.yaml
 Thumbs.db
