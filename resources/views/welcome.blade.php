@@ -94,6 +94,13 @@
                 <p class="text-gray-500 italic">Belum ada berita yang dipublikasikan.</p>
             @endforelse
         </div>
+
+        <div class="mt-8 flex justify-end">
+            <a href="{{ route('berita.public') }}" class="inline-flex items-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-5 py-2.5 rounded-lg text-sm shadow-sm transition">
+                <span>Lihat Semua Berita</span>
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+        </div>
     </div>
 
     <!-- Footer -->
