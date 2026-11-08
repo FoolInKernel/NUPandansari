@@ -235,10 +235,10 @@
                 <p class="text-emerald-300">
                     &copy; 2026 PRNU Pandansari. All rights reserved.
                 </p>
-                <a href="{{ route('login') }}" class="text-emerald-400 hover:text-yellow-300 transition font-medium inline-flex items-center gap-1">
+                {{-- <a href="{{ route('login') }}" class="text-emerald-400 hover:text-yellow-300 transition font-medium inline-flex items-center gap-1">
                     <i class="fa-solid fa-lock text-[10px]"></i>
                     Login Pengurus &rarr;
-                </a>
+                </a> --}}
             </div>
         </div>
     </footer>
