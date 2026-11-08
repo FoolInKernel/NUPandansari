@@ -21,7 +21,7 @@
                         <i class="fa-solid fa-newspaper text-xs"></i>
                         Berita
                     </a>
-                    <a href="{{ route('galeri.public') }}" class="px-3 py-2 rounded-md text-sm font-bold {{ request()->routeIs('galeri.*') ? 'bg-emerald-800 text-yellow-400' : 'text-emerald-100 hover:bg-emerald-800 hover:text-white' }} transition flex items-center gap-1.5">
+                    <a href="{{ route('galeri-admin.index') }}" class="px-3 py-2 rounded-md text-sm font-bold {{ request()->routeIs('galeri-admin.*') ? 'bg-emerald-800 text-yellow-400' : 'text-emerald-100 hover:bg-emerald-800 hover:text-white' }} transition flex items-center gap-1.5">
                         <i class="fa-solid fa-images text-xs"></i>
                         Galeri
                     </a>
@@ -86,7 +86,7 @@
                 <i class="fa-solid fa-newspaper text-sm"></i>
                 Kelola Berita
             </a>
-            <a href="{{ route('galeri.public') }}" class="block px-3 py-2 rounded-md text-base font-bold text-emerald-100 hover:bg-emerald-800 flex items-center gap-2">
+            <a href="{{ route('galeri-admin.index') }}" class="block px-3 py-2 rounded-md text-base font-bold text-emerald-100 hover:bg-emerald-800 flex items-center gap-2">
                 <i class="fa-solid fa-images text-sm"></i>
                 Kelola Galeri
             </a>
