@@ -103,6 +103,113 @@
         </div>
     </div>
 
+    <!-- Galeri Terbaru Showcase Section -->
+    <div id="galeri-showcase" class="bg-gray-100/70 border-y border-gray-200/80 py-12 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between mb-6 md:mb-8">
+                <h2 class="text-xl sm:text-2xl font-bold text-gray-900 flex items-center gap-2">
+                    <i class="fa-solid fa-images text-emerald-700"></i>
+                    Galeri & Dokumentasi Terbaru
+                </h2>
+                <a href="{{ route('galeri.public') }}" class="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-emerald-700 hover:text-emerald-800 transition">
+                    <span>Lihat Semua Galeri</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            @if(isset($galeris) && $galeris->count() > 0)
+            <div class="bg-white rounded-3xl border border-gray-200 p-6 md:p-8 shadow-sm">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Kiri: Slider Foto Galeri (3 Foto Terbaru) -->
+                    <div class="lg:col-span-7 relative">
+                        <div class="relative h-[280px] sm:h-[340px] md:h-[380px] w-full flex items-center justify-center overflow-hidden rounded-2xl bg-gray-900">
+                            @foreach ($galeris as $index => $item)
+                                <div class="galeri-slide absolute inset-0 transition-all duration-500 transform {{ $index === 0 ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-95 z-0' }}"
+                                     data-index="{{ $index }}">
+                                    @if($item->foto)
+                                        <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->judul }}" class="w-full h-full object-cover rounded-2xl">
+                                    @else
+                                        <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-emerald-800 to-emerald-950 text-emerald-200 rounded-2xl">
+                                            <i class="fa-solid fa-image text-5xl mb-2 opacity-50"></i>
+                                            <span class="text-sm font-medium">Dokumentasi PRNU</span>
+                                        </div>
+                                    @endif
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl"></div>
+                                </div>
+                            @endforeach
+
+                            <!-- Navigation Controls (< & >) -->
+                            @if($galeris->count() > 1)
+                                <button id="prev-galeri-btn" type="button" class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-emerald-900 shadow-md flex items-center justify-center transition hover:scale-105 active:scale-95 focus:outline-none" aria-label="Sebelumnya">
+                                    <i class="fa-solid fa-chevron-left text-sm"></i>
+                                </button>
+                                <button id="next-galeri-btn" type="button" class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-emerald-900 shadow-md flex items-center justify-center transition hover:scale-105 active:scale-95 focus:outline-none" aria-label="Selanjutnya">
+                                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                                </button>
+                            @endif
+                        </div>
+
+                        <!-- Dots Indicator -->
+                        @if($galeris->count() > 1)
+                            <div class="flex justify-center items-center gap-2 mt-4">
+                                @foreach ($galeris as $index => $item)
+                                    <button type="button" data-galeri-target="{{ $index }}" class="galeri-dot h-2 rounded-full transition-all duration-300 {{ $index === 0 ? 'w-8 bg-emerald-700' : 'w-2 bg-gray-300 hover:bg-emerald-400' }}"></button>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+
+                    <!-- Kanan: Detail Teks Galeri (Ukuran Teks Sedikit Lebih Kecil) -->
+                    <div class="lg:col-span-5 flex flex-col justify-center">
+                        @foreach ($galeris as $index => $item)
+                            <div class="galeri-content-panel transition-all duration-300 {{ $index === 0 ? 'block' : 'hidden' }}" data-index="{{ $index }}">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <span class="text-xs font-semibold py-1 px-3 rounded-full text-emerald-800 bg-emerald-50 border border-emerald-200 inline-flex items-center gap-1.5">
+                                        <i class="fa-solid fa-camera text-[10px]"></i>
+                                        Dokumentasi Kegiatan
+                                    </span>
+                                    <span class="text-xs text-gray-500 flex items-center gap-1">
+                                        <i class="fa-regular fa-calendar text-[10px]"></i>
+                                        {{ $item->created_at->format('d M Y') }}
+                                    </span>
+                                </div>
+
+                                <h3 class="text-lg sm:text-xl font-bold text-gray-900 leading-snug mb-3">
+                                    {{ $item->judul }}
+                                </h3>
+
+                                <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-6 line-clamp-4">
+                                    {{ $item->deskripsi ?? 'Dokumentasi kegiatan resmi PRNU Desa Pandansari.' }}
+                                </p>
+
+                                <div class="flex items-center gap-3">
+                                    <a href="{{ route('galeri.public') }}" class="inline-flex items-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold px-4 py-2 rounded-lg text-xs sm:text-sm shadow-sm transition">
+                                        <span>Lihat Semua Galeri</span>
+                                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                </div>
+            </div>
+            @else
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 text-center">
+                    <p class="text-gray-500 italic text-sm">Belum ada foto galeri yang diunggah.</p>
+                </div>
+            @endif
+
+            <div class="mt-6 flex justify-end sm:hidden">
+                <a href="{{ route('galeri.public') }}" class="inline-flex items-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold px-4 py-2 rounded-lg text-xs shadow-sm transition">
+                    <span>Lihat Semua Galeri</span>
+                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-emerald-900 text-emerald-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
@@ -160,6 +267,60 @@
                 wrapper.className = 'fixed top-0 left-0 w-full z-50 transition-all duration-300 pt-4 px-4 sm:px-6 lg:px-8';
                 nav.className = 'bg-emerald-800 text-emerald-100 max-w-7xl mx-auto rounded-full shadow-lg px-6 lg:px-8 transition-all duration-300 relative';
             }
+        });
+
+        // Galeri Showcase Slider
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.galeri-slide');
+            const panels = document.querySelectorAll('.galeri-content-panel');
+            const dots = document.querySelectorAll('.galeri-dot');
+            const prevBtn = document.getElementById('prev-galeri-btn');
+            const nextBtn = document.getElementById('next-galeri-btn');
+            const total = slides.length;
+            let current = 0;
+
+            if (total <= 1) return;
+
+            function goToSlide(index) {
+                current = (index + total) % total;
+
+                slides.forEach((slide, i) => {
+                    if (i === current) {
+                        slide.classList.remove('opacity-0', 'scale-95', 'z-0');
+                        slide.classList.add('opacity-100', 'scale-100', 'z-10');
+                    } else {
+                        slide.classList.remove('opacity-100', 'scale-100', 'z-10');
+                        slide.classList.add('opacity-0', 'scale-95', 'z-0');
+                    }
+                });
+
+                panels.forEach((panel, i) => {
+                    if (i === current) {
+                        panel.classList.remove('hidden');
+                        panel.classList.add('block');
+                    } else {
+                        panel.classList.remove('block');
+                        panel.classList.add('hidden');
+                    }
+                });
+
+                dots.forEach((dot, i) => {
+                    if (i === current) {
+                        dot.classList.remove('w-2', 'bg-gray-300');
+                        dot.classList.add('w-8', 'bg-emerald-700');
+                    } else {
+                        dot.classList.remove('w-8', 'bg-emerald-700');
+                        dot.classList.add('w-2', 'bg-gray-300');
+                    }
+                });
+            }
+
+            if (prevBtn) prevBtn.addEventListener('click', () => goToSlide(current - 1));
+            if (nextBtn) nextBtn.addEventListener('click', () => goToSlide(current + 1));
+
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => goToSlide(i));
+            });
         });
 
         // Scrollspy untuk navbar
