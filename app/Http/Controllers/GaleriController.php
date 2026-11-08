@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ImageHelper;
 use App\Models\Galeri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -46,10 +47,10 @@ class GaleriController extends Controller
         $request->validate([
             'judul'     => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
-            'foto'      => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'foto'      => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
-        $fotoPath = $request->file('foto')->store('galeri', 'public');
+        $fotoPath = ImageHelper::convertToWebp($request->file('foto'), 'galeri');
 
         Galeri::create([
             'judul'     => $request->judul,
@@ -85,7 +86,7 @@ class GaleriController extends Controller
             if (Storage::disk('public')->exists($galeri->foto)) {
                 Storage::disk('public')->delete($galeri->foto);
             }
-            $data['foto'] = $request->file('foto')->store('galeri', 'public');
+            $data['foto'] = ImageHelper::convertToWebp($request->file('foto'), 'galeri');
         }
 
         $galeri->update($data);

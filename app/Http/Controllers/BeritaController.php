@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ImageHelper;
 use App\Models\Berita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -71,7 +72,7 @@ class BeritaController extends Controller
         $validated['slug'] = Str::slug($validated['judul']) . '-' . uniqid();
         
         if ($request->hasFile('foto')) {
-            $validated['foto'] = $request->file('foto')->store('berita', 'public');
+            $validated['foto'] = ImageHelper::convertToWebp($request->file('foto'), 'berita');
         }
 
         Berita::create($validated);
@@ -115,7 +116,7 @@ class BeritaController extends Controller
             if ($berita->foto) {
                 Storage::disk('public')->delete($berita->foto);
             }
-            $data['foto'] = $request->file('foto')->store('berita', 'public');
+            $data['foto'] = ImageHelper::convertToWebp($request->file('foto'), 'berita');
         }
 
         $berita->update($data);
