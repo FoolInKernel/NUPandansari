@@ -75,7 +75,7 @@
                             </p>
                         </div>
                         <div>
-                            <a href="{{ route('galeri-admin.index') }}" class="w-full flex items-center justify-center gap-2 bg-amber-500 text-white font-bold text-sm px-4 py-2.5 rounded-lg hover:bg-amber-600 transition">
+                            <a href="{{ route('galeri.public') }}" class="w-full flex items-center justify-center gap-2 bg-amber-500 text-white font-bold text-sm px-4 py-2.5 rounded-lg hover:bg-amber-600 transition">
                                 <span>Kelola Galeri</span>
                                 <i class="fa-solid fa-arrow-right text-xs"></i>
                             </a>
