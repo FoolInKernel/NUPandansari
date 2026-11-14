@@ -94,27 +94,27 @@
             <div class="flex flex-wrap items-center gap-2">
                 <a href="{{ route('home') . '#berita' }}"
                    class="px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition {{ !$kategoriAktif ? 'bg-emerald-800 text-white shadow-sm' : 'bg-white text-gray-700 hover:bg-emerald-50 hover:text-emerald-800 border border-gray-200' }}">
-                    Semua ({{ $kategoriCounts['Semua'] }})
+                    Semua ({{ $kategoriCounts['Semua'] ?? 0 }})
                 </a>
                 <a href="{{ route('berita.public', ['kategori' => 'Kajian']) }}"
                    class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition {{ $kategoriAktif == 'Kajian' ? 'bg-emerald-800 text-white shadow-sm' : 'bg-white text-gray-700 hover:bg-emerald-50 hover:text-emerald-800 border border-gray-200' }}">
                     <i class="fa-solid fa-book-quran text-xs"></i>
-                    <span>Kajian ({{ $kategoriCounts['Kajian'] }})</span>
+                    <span>Kajian ({{ $kategoriCounts['Kajian'] ?? 0 }})</span>
                 </a>
                 <a href="{{ route('berita.public', ['kategori' => 'Pengumuman']) }}"
                    class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition {{ $kategoriAktif == 'Pengumuman' ? 'bg-emerald-800 text-white shadow-sm' : 'bg-white text-gray-700 hover:bg-emerald-50 hover:text-emerald-800 border border-gray-200' }}">
                     <i class="fa-solid fa-bullhorn text-xs"></i>
-                    <span>Pengumuman ({{ $kategoriCounts['Pengumuman'] }})</span>
+                    <span>Pengumuman ({{ $kategoriCounts['Pengumuman'] ?? 0 }})</span>
                 </a>
                 <a href="{{ route('berita.public', ['kategori' => 'Opini']) }}"
                    class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition {{ $kategoriAktif == 'Opini' ? 'bg-emerald-800 text-white shadow-sm' : 'bg-white text-gray-700 hover:bg-emerald-50 hover:text-emerald-800 border border-gray-200' }}">
                     <i class="fa-solid fa-pen-nib text-xs"></i>
-                    <span>Opini ({{ $kategoriCounts['Opini'] }})</span>
+                    <span>Opini ({{ $kategoriCounts['Opini'] ?? 0 }})</span>
                 </a>
                 <a href="{{ route('berita.public', ['kategori' => 'Lainnya']) }}"
                    class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition {{ $kategoriAktif == 'Lainnya' ? 'bg-emerald-800 text-white shadow-sm' : 'bg-white text-gray-700 hover:bg-emerald-50 hover:text-emerald-800 border border-gray-200' }}">
                     <i class="fa-solid fa-folder text-xs"></i>
-                    <span>Lainnya ({{ $kategoriCounts['Lainnya'] }})</span>
+                    <span>Lainnya ({{ $kategoriCounts['Lainnya'] ?? 0 }})</span>
                 </a>
             </div>
 
